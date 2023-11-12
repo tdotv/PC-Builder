@@ -1,0 +1,164 @@
+IF NOT EXISTS (
+    SELECT name
+    FROM sys.databases
+    WHERE name = N'pc_designerDB'
+)
+CREATE DATABASE [pc_designerDB]
+GO
+ALTER DATABASE [pc_designerDB] SET QUERY_STORE=ON
+GO
+
+CREATE TABLE dbo.Sockets
+(
+    SocketId INT NOT NULL PRIMARY KEY,
+    Name NVARCHAR(50) NOT NULL,
+);
+GO
+
+CREATE TABLE dbo.CpuVendors
+(
+    CpuVendorId INT NOT NULL PRIMARY KEY,
+    Name NVARCHAR(50) NOT NULL,
+);
+GO
+
+CREATE TABLE dbo.ComputerCases
+(
+    ComputerCaseId INT NOT NULL PRIMARY KEY,
+    Name NVARCHAR(50) NOT NULL,
+    Price DECIMAL NOT NULL,
+    ImageUrl NVARCHAR(50) NOT NULL,
+);
+GO
+
+CREATE TABLE dbo.RAMs
+(
+    RamId INT NOT NULL PRIMARY KEY,
+    Name NVARCHAR(50) NOT NULL,
+    Type NVARCHAR(50) NOT NULL,
+    Capacity INT NOT NULL,
+    ClockFrequency INT NOT NULL,
+    ImageUrl NVARCHAR(50) NOT NULL,
+);
+GO
+
+CREATE TABLE dbo.DataStorage 
+(
+    DataStorageId INT NOT NULL PRIMARY KEY,
+    Name NVARCHAR(50) NOT NULL,
+    Capacity INT NOT NULL,
+    TYPE NVARCHAR(20),
+);
+GO
+
+CREATE TABLE dbo.SSDs
+(
+    DataStorageId INT NOT NULL PRIMARY KEY,
+    ReadSpeed INT NOT NULL,
+    WriteSpeed INT NOT NULL,
+    FOREIGN KEY (DataStorageId) REFERENCES dbo.DataStorage(DataStorageId),
+);
+GO
+
+CREATE TABLE dbo.HDDs
+(
+    DataStorageId INT NOT NULL PRIMARY KEY,
+    RPM INT NOT NULL,
+    FOREIGN KEY (DataStorageId) REFERENCES dbo.DataStorage(DataStorageId),
+);
+GO
+
+CREATE TABLE dbo.MotherBoards
+(
+    MotherBoardId INT NOT NULL PRIMARY KEY,
+    RamId INT,
+    SocketId INT,
+    DataStorageId INT,
+    Name NVARCHAR(50) NOT NULL,
+    Price DECIMAL NOT NULL,
+    ImageUrl NVARCHAR(50) NOT NULL,
+
+    CONSTRAINT FK_RamId
+        FOREIGN KEY (RamId)
+        REFERENCES dbo.RAMs (RamId)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+    CONSTRAINT FK_SocketId
+        FOREIGN KEY (SocketId)
+        REFERENCES dbo.Sockets (SocketId)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+    CONSTRAINT FK_DataStorageId
+        FOREIGN KEY (DataStorageId)
+        REFERENCES dbo.DataStorage (DataStorageId)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+);
+GO
+
+CREATE TABLE dbo.GraphicalCards
+(
+    GraphicalCardId INT NOT NULL PRIMARY KEY,
+    Name NVARCHAR(50) NOT NULL,
+    Price DECIMAL NOT NULL,
+    MaxWattage INT NOT NULL,
+    ImageUrl NVARCHAR(50) NOT NULL,
+);
+GO
+
+CREATE TABLE dbo.CPUs
+(
+    CpuId INT NOT NULL PRIMARY KEY,
+    CpuVendorId INT,
+    Name NVARCHAR(50) NOT NULL,
+    Price DECIMAL NOT NULL,
+    MaxWattage INT NOT NULL,
+    IntegratedGraphics BIT NOT NULL DEFAULT (0),
+    ImageUrl NVARCHAR(50) NOT NULL,
+
+    CONSTRAINT FK_CpuVendorId_CPU
+        FOREIGN KEY (CpuVendorId)
+        REFERENCES dbo.CpuVendors (CpuVendorId)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+);
+GO
+
+CREATE TABLE dbo.PcConfigurations
+(
+    PcConfigurationId INT NOT NULL PRIMARY KEY,
+    MotherBoardId INT,
+    CpuId INT,
+    GraphicalCardId INT,
+    CaseId INT,
+    Name NVARCHAR(50) NOT NULL,
+    Price DECIMAL NOT NULL,
+    TotalWattage INT NOT NULL,
+    CreatedOn DATETIME,
+    CONSTRAINT FK_MotherBoardId
+        FOREIGN KEY (MotherBoardId)
+        REFERENCES dbo.MotherBoards (MotherBoardId)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+    CONSTRAINT FK_CpuId
+        FOREIGN KEY (CpuId)
+        REFERENCES dbo.CPUs (CpuId)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+    CONSTRAINT FK_GraphicalCardId
+        FOREIGN KEY (GraphicalCardId)
+        REFERENCES dbo.GraphicalCards (GraphicalCardId)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+    CONSTRAINT FK_CaseId
+        FOREIGN KEY (CaseId)
+        REFERENCES dbo.ComputerCases (ComputerCaseId)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+);
+GO

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/PC_Designer.Server.props" />
+</Project>

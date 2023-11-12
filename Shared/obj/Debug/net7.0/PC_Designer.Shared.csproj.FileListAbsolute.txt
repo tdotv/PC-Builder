@@ -1,0 +1,12 @@
+/home/tdotv/MyCode/PC_Designer/Shared/bin/Debug/net7.0/PC_Designer.Shared.deps.json
+/home/tdotv/MyCode/PC_Designer/Shared/bin/Debug/net7.0/PC_Designer.Shared.dll
+/home/tdotv/MyCode/PC_Designer/Shared/bin/Debug/net7.0/PC_Designer.Shared.pdb
+/home/tdotv/MyCode/PC_Designer/Shared/obj/Debug/net7.0/PC_Designer.Shared.csproj.AssemblyReference.cache
+/home/tdotv/MyCode/PC_Designer/Shared/obj/Debug/net7.0/PC_Designer.Shared.GeneratedMSBuildEditorConfig.editorconfig
+/home/tdotv/MyCode/PC_Designer/Shared/obj/Debug/net7.0/PC_Designer.Shared.AssemblyInfoInputs.cache
+/home/tdotv/MyCode/PC_Designer/Shared/obj/Debug/net7.0/PC_Designer.Shared.AssemblyInfo.cs
+/home/tdotv/MyCode/PC_Designer/Shared/obj/Debug/net7.0/PC_Designer.Shared.csproj.CoreCompileInputs.cache
+/home/tdotv/MyCode/PC_Designer/Shared/obj/Debug/net7.0/PC_Designer.Shared.dll
+/home/tdotv/MyCode/PC_Designer/Shared/obj/Debug/net7.0/refint/PC_Designer.Shared.dll
+/home/tdotv/MyCode/PC_Designer/Shared/obj/Debug/net7.0/PC_Designer.Shared.pdb
+/home/tdotv/MyCode/PC_Designer/Shared/obj/Debug/net7.0/ref/PC_Designer.Shared.dll

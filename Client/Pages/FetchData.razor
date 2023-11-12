@@ -1,0 +1,52 @@
+﻿@inject ISocketService SocketService
+@page "/fetchdata"
+@using PC_Designer.Shared
+@inject HttpClient Http
+
+<PageTitle>Sockets</PageTitle>
+
+<h1>Sockets</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (sockets == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var socket in sockets)
+            {
+                <tr>
+                    <td>@socket.SocketId</td>
+                    <td>@socket.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Sockets>? sockets;
+
+    protected override async Task OnInitializedAsync()
+    {
+        sockets = await SocketService.GetSocketsAsync();
+    }
+
+    [Inject] private ISocketService? socketService { get; set; }
+
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+            Console.WriteLine($"Injected service name: {SocketService?.GetType().Name}");
+        }
+}
