@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "EprQ92yYKuBgBW7YKwDS5/6uC0vI8v6xZhAJinQwU3w=",
+  "Hash": "rNTlWtgYsrCpPhCyaZCt0he7ci1ms8cevmW5BQL6qJU=",
   "Source": "PC_Designer.Server",
   "BasePath": "_content/PC_Designer.Server",
   "Mode": "Default",
@@ -61,23 +61,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/home/tdotv/.nuget/packages/microsoft.aspnetcore.components.webassembly/7.0.13/build/net7.0/blazor.webassembly.js"
-    },
-    {
-      "Identity": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/Dapper.dll",
-      "SourceId": "PC_Designer.Client",
-      "SourceType": "Project",
-      "ContentRoot": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "_framework/Dapper.dll",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "BlazorWebAssemblyResource",
-      "AssetTraitValue": "runtime",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/home/tdotv/.nuget/packages/dapper/2.1.21/lib/net7.0/Dapper.dll"
     },
     {
       "Identity": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/dotnet.7.0.13.9hmpqf9leq.js",
@@ -1081,23 +1064,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/home/tdotv/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/7.0.13/runtimes/browser-wasm/lib/net7.0/System.Data.dll"
-    },
-    {
-      "Identity": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/System.Data.SqlClient.dll",
-      "SourceId": "PC_Designer.Client",
-      "SourceType": "Project",
-      "ContentRoot": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "_framework/System.Data.SqlClient.dll",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "BlazorWebAssemblyResource",
-      "AssetTraitValue": "runtime",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/home/tdotv/.nuget/packages/system.data.sqlclient/4.8.5/lib/netcoreapp2.1/System.Data.SqlClient.dll"
     },
     {
       "Identity": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/System.Diagnostics.Contracts.dll",
@@ -5316,23 +5282,6 @@
       "OriginalItemSpec": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/System.Net.Ping.dll"
     },
     {
-      "Identity": "/home/tdotv/MyCode/PC_Designer/Client/obj/Debug/net7.0/build-gz/iX0GoIn2.gz",
-      "SourceId": "PC_Designer.Client",
-      "SourceType": "Project",
-      "ContentRoot": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "_framework/Dapper.dll.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "RelatedAsset": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/Dapper.dll",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/Dapper.dll"
-    },
-    {
       "Identity": "/home/tdotv/MyCode/PC_Designer/Client/obj/Debug/net7.0/build-gz/JB51t7jB.gz",
       "SourceId": "PC_Designer.Client",
       "SourceType": "Project",
@@ -6300,23 +6249,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/System.Runtime.Extensions.dll"
-    },
-    {
-      "Identity": "/home/tdotv/MyCode/PC_Designer/Client/obj/Debug/net7.0/build-gz/rDkZVU2s.gz",
-      "SourceId": "PC_Designer.Client",
-      "SourceType": "Project",
-      "ContentRoot": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "_framework/System.Data.SqlClient.dll.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "RelatedAsset": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/System.Data.SqlClient.dll",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/System.Data.SqlClient.dll"
     },
     {
       "Identity": "/home/tdotv/MyCode/PC_Designer/Client/obj/Debug/net7.0/build-gz/ROegBM0O.gz",

@@ -20,7 +20,5 @@ public class DbService
         var result = await connection.QueryAsync<Sockets>(query);
 
         return result.ToList();
-
-        // return new List<Sockets>();
     }
 }

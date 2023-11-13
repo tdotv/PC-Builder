@@ -651,10 +651,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "Dapper": "2.1.21",
           "Microsoft.AspNetCore.Components.WebAssembly": "7.0.13",
-          "PC_Designer.Shared": "1.0.0",
-          "System.Data.SqlClient": "4.8.5"
+          "PC_Designer.Shared": "1.0.0"
         },
         "compile": {
           "bin/placeholder/PC_Designer.Client.dll": {}

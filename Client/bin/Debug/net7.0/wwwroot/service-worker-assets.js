@@ -873,11 +873,11 @@
       "url": "_framework\/PC_Designer.Shared.pdb"
     },
     {
-      "hash": "sha256-BbW1OhXNlHcN+\/2bhbtuAgba6QeJ2M5Raggu8MEJZng=",
+      "hash": "sha256-x3qiCjA9yrDDKRJsQc9ZRf3HmD+WUEvKB2F4ZxhgllE=",
       "url": "_framework\/PC_Designer.Client.dll"
     },
     {
-      "hash": "sha256-4MT4Tvs9CSx0i\/IYF6ph+RAW55nm8ivujkqXcsgBu7Y=",
+      "hash": "sha256-27aHnY8KDcd64LMxATiRVKgL8nNaEpFPpXOYCnl17oY=",
       "url": "_framework\/PC_Designer.Client.pdb"
     },
     {
@@ -885,17 +885,9 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-ISrkXd6rGczqIQmyNQN8LiUK\/ybSpYJ\/AqCUjzw5p00=",
+      "hash": "sha256-Jt88as9ojU7\/wLeDTTfA\/2jA62XxiVDuzwBkaqWFGtw=",
       "url": "_framework\/blazor.boot.json"
-    },
-    {
-      "hash": "sha256-yi\/2YRsTdybWxnHjIN+g1Fnq7tGRGok5u+Vqnbb\/n1k=",
-      "url": "_framework\/Dapper.dll"
-    },
-    {
-      "hash": "sha256-N9QEun1JrCD4FtOJ\/07ozAAQOd133uOsi2tS+ohSzaM=",
-      "url": "_framework\/System.Data.SqlClient.dll"
     }
   ],
-  "version": "u4AX4uez"
+  "version": "VpHqkqnN"
 };

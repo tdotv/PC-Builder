@@ -20,8 +20,6 @@ builder.Services.AddRazorPages();
 builder.Services.AddScoped<ISocketService, SocketService>();
 builder.Services.AddScoped<DbService>();
 
-builder.Services.AddTransient<IDbConnection>((sp) => new SqlConnection(configuration.GetConnectionString("DefaultConnection")));
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
