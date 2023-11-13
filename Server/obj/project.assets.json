@@ -664,6 +664,9 @@
       "PC_Designer.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "System.Data.SqlClient": "4.8.5"
+        },
         "compile": {
           "bin/placeholder/PC_Designer.Shared.dll": {}
         },

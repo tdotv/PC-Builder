@@ -1,5 +1,6 @@
 using System.Data;
 using System.Data.SqlClient;
+using Dapper;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -19,6 +20,9 @@ builder.Services.AddRazorPages();
 // Dependency Ijections
 builder.Services.AddScoped<ISocketService, SocketService>();
 builder.Services.AddScoped<DbService>();
+
+// Map the column name with underscores to the model class
+DefaultTypeMap.MatchNamesWithUnderscores = true;
 
 var app = builder.Build();
 

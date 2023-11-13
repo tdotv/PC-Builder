@@ -1,24 +1,49 @@
-using System.Data.SqlClient;
 using Dapper;
-using PC_Designer.Shared;
+using System.Data.SqlClient;
 
-public class DbService
+public class DbService : IDbService
 {
-    private readonly string _connectionString;
+    private readonly string? _connectionString;
 
     public DbService(IConfiguration configuration)
     {
         _connectionString = configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("ConnectionString is null");
+        if (_connectionString != null) { using var connection = new SqlConnection(_connectionString); }   
     }
 
-    public async Task<List<Sockets>> GetSocketsAsync()
+    public async Task<T> GetAsync<T>(string command, object parms, SqlConnection connection)
     {
-        using var connection = new SqlConnection(_connectionString);
         await connection.OpenAsync();
-
-        var query = "SELECT SocketId, Name FROM Sockets";
-        var result = await connection.QueryAsync<Sockets>(query);
-
-        return result.ToList();
+        T result;
+        result = (await connection.QueryAsync<T>(command, parms).ConfigureAwait(false)).FirstOrDefault() ?? throw new InvalidOperationException("Result is null");
+        return result;
     }
+
+//    public async Task<List<T>> GetAll<T>(string command, object parms)
+//     {
+//         List<T> result = new List<T>();
+//         result = (await _db.QueryAsync<T>(command, parms)).ToList();
+//         return result;
+//     } 
+
+//     public async Task<T> Insert<T>(string command, object parms)
+//     {
+//         T result;
+//         result = _db.Query<T>(command, parms).FirstOrDefault();
+//         return result;
+//     }
+ 
+//     public async Task<T> Update<T>(string command, object parms)
+//     {
+//         T result;
+//         result = _db.Query<T>(command, parms).FirstOrDefault();
+//         return result;
+//     }
+
+//     public async Task<T> Delete<T>(string command, object parms)
+//     {
+//         T result;
+//         result = _db.Query<T>(command, parms).FirstOrDefault();
+//         return result;
+//     }
 }
