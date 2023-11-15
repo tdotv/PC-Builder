@@ -18,8 +18,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
 // Dependency Ijections
-builder.Services.AddScoped<ISocketService, SocketService>();
-builder.Services.AddScoped<DbService>();
+builder.Services.AddScoped<ISocketService, ServerSocketService>();
+builder.Services.AddScoped<IDbService, DbService>();
 
 // Map the column name with underscores to the model class
 DefaultTypeMap.MatchNamesWithUnderscores = true;

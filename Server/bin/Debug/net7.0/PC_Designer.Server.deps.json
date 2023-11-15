@@ -308,6 +308,9 @@
         }
       },
       "PC_Designer.Shared/1.0.0": {
+        "dependencies": {
+          "System.Data.SqlClient": "4.8.5"
+        },
         "runtime": {
           "PC_Designer.Shared.dll": {}
         }

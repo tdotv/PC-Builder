@@ -838,3 +838,7 @@
 /home/tdotv/MyCode/PC_Designer/Client/obj/Debug/net7.0/refint/PC_Designer.Client.dll
 /home/tdotv/MyCode/PC_Designer/Client/obj/Debug/net7.0/PC_Designer.Client.pdb
 /home/tdotv/MyCode/PC_Designer/Client/obj/Debug/net7.0/ref/PC_Designer.Client.dll
+/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/System.Data.SqlClient.dll
+/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/System.Data.SqlClient.dll.gz
+/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/System.Data.SqlClient.dll
+/home/tdotv/MyCode/PC_Designer/Client/obj/Debug/net7.0/build-gz/rDkZVU2s.gz

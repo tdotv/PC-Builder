@@ -1,10 +1,32 @@
 using PC_Designer.Shared;
 
-public class SocketService : ISocketService
+public class ServerSocketService : ISocketService
 {
-    private readonly DbService _dbService;
+    private readonly IDbService _dbService;
 
-    public SocketService(DbService dbService) { _dbService = dbService ;}
+    public ServerSocketService(IDbService dbService) { _dbService = dbService ;}
 
-    public async Task<List<Sockets>?> GetSocketsAsync() { return await _dbService.GetSocketsAsync(); }
+    public async Task<List<Sockets>?> GetSocketsAsync() 
+    {
+        return await _dbService.GetAll<Sockets>("SELECT * FROM dbo.Sockets", new { }); 
+    }
+
+    public async Task<bool> CreateSocketsAsync(Sockets sockets)
+    {
+        await _dbService.Insert<int>("INSERT INTO dbo.Sockets (SocketId, Name) VALUES (@SocketId, @Name)", sockets);
+        return true;
+    }
+
+    public async Task<Sockets?> UpdateSocketsAsync(Sockets sockets)
+    {
+        await _dbService.Update<int>("UPDATE dbo.Sockets SET name=@Name WHERE SocketId=@SocketId", sockets);
+        return await _dbService.GetAsync<Sockets>("SELECT * From dbo.Sockets WHERE SocketId=@SocketId", new { SocketId = sockets.SocketId });
+    }
+
+    public async Task<bool> DeleteSocketsAsync(int key)
+    {
+        await _dbService.Delete<int>("DELETE FROM dbo.Sockets WHERE SocketId=@SocketId", new { id = key });
+        return true;
+    }
+
 }

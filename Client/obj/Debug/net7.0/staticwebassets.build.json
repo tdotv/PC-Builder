@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "mVifCN+DuvXWlTqVzVA4zpvKCROmbOAJIDH0x+nbhpA=",
+  "Hash": "doJIA/TsJDmd8qOHFLWecf6RkvmQ8Xjr5jluemgAkDo=",
   "Source": "PC_Designer.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -1052,6 +1052,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/home/tdotv/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/7.0.13/runtimes/browser-wasm/lib/net7.0/System.Data.dll"
+    },
+    {
+      "Identity": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/System.Data.SqlClient.dll",
+      "SourceId": "PC_Designer.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/System.Data.SqlClient.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/home/tdotv/.nuget/packages/system.data.sqlclient/4.8.5/lib/netcoreapp2.1/System.Data.SqlClient.dll"
     },
     {
       "Identity": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/System.Diagnostics.Contracts.dll",
@@ -6237,6 +6254,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/System.Runtime.Extensions.dll"
+    },
+    {
+      "Identity": "/home/tdotv/MyCode/PC_Designer/Client/obj/Debug/net7.0/build-gz/rDkZVU2s.gz",
+      "SourceId": "PC_Designer.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/System.Data.SqlClient.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/System.Data.SqlClient.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/System.Data.SqlClient.dll"
     },
     {
       "Identity": "/home/tdotv/MyCode/PC_Designer/Client/obj/Debug/net7.0/build-gz/ROegBM0O.gz",

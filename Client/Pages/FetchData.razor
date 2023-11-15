@@ -20,6 +20,7 @@ else
             <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -28,25 +29,71 @@ else
                 <tr>
                     <td>@socket.SocketId</td>
                     <td>@socket.Name</td>
+                    <td>
+                        <button class="btn btn-primary" @onclick="() => EditSocket(socket)">Edit</button>
+                        <button class="btn btn-danger" @onclick="() => DeleteSocket(socket.SocketId)">Delete</button>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 }
 
+<div>
+    <h4>Create/Edit Socket</h4>
+    <EditForm Model="currentSocket" OnValidSubmit="SaveSocket">
+        <DataAnnotationsValidator />
+        <div class="form-group">
+            <label for="Name">Name:</label>
+            <InputText id="Name" class="form-control" @bind-Value="currentSocket.Name" />
+            <ValidationMessage For="() => currentSocket.Name" />
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+    </EditForm>
+</div>
+
 @code {
+@* 
+    [Inject] private ISocketService socketService { get; set; }
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Console.WriteLine($"Injected service name: {SocketService?.GetType().Name}");
+    } *@
+
     private List<Sockets>? sockets;
+    private Sockets currentSocket = new Sockets();  // for Create or Edit
 
     protected override async Task OnInitializedAsync()
     {
         sockets = await SocketService.GetSocketsAsync();
     }
 
-    [Inject] private ISocketService? socketService { get; set; }
-
-        protected override void OnInitialized()
+    private async Task SaveSocket()
+    {
+        if (currentSocket.SocketId == 0)
         {
-            base.OnInitialized();
-            Console.WriteLine($"Injected service name: {SocketService?.GetType().Name}");
+            await SocketService.CreateSocketsAsync(currentSocket);
         }
+        else
+        {
+            await SocketService.UpdateSocketsAsync(currentSocket);
+        }
+        
+        sockets = await SocketService.GetSocketsAsync();    // Reload the list of Sockets
+        currentSocket = new Sockets();  // Reset the currentSocket for the next Create or Edit
+    }
+
+    private void EditSocket(Sockets socket)
+    {
+        //  Set the currentSocket for editing
+        currentSocket = socket;
+    }
+
+    private async Task DeleteSocket(int SocketId)
+    {
+        await SocketService.DeleteSocketsAsync(SocketId);
+        sockets = await SocketService.GetSocketsAsync();
+    }
+
 }
