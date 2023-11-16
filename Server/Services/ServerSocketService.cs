@@ -1,4 +1,5 @@
 using PC_Designer.Shared;
+using PC_Designer.ViewModels;
 
 public class ServerSocketService : ISocketService
 {
@@ -6,21 +7,22 @@ public class ServerSocketService : ISocketService
 
     public ServerSocketService(IDbService dbService) { _dbService = dbService ;}
 
-    public async Task<List<Sockets>?> GetSocketsAsync() 
+    public async Task<List<SocketsViewModel>?> GetSocketsAsync() 
     {
-        return await _dbService.GetAll<Sockets>("SELECT * FROM dbo.Sockets", new { }); 
+        var sockets = await _dbService.GetAll<Sockets>("SELECT * FROM dbo.Sockets", new { }); 
+        return sockets.Select(socket => (SocketsViewModel)socket).ToList(); 
     }
 
-    public async Task<bool> CreateSocketsAsync(Sockets sockets)
+    public async Task<bool> CreateSocketsAsync(SocketsViewModel socketsViewModel)
     {
-        await _dbService.Insert<int>("INSERT INTO dbo.Sockets (SocketId, Name) VALUES (@SocketId, @Name)", sockets);
+        await _dbService.Insert<int>("INSERT INTO dbo.Sockets (SocketId, Name) VALUES (@SocketId, @Name)", socketsViewModel);
         return true;
     }
 
-    public async Task<Sockets?> UpdateSocketsAsync(Sockets sockets)
+    public async Task<SocketsViewModel?> UpdateSocketsAsync(SocketsViewModel socketsViewModel)
     {
-        await _dbService.Update<int>("UPDATE dbo.Sockets SET name=@Name WHERE SocketId=@SocketId", sockets);
-        return await _dbService.GetAsync<Sockets>("SELECT * From dbo.Sockets WHERE SocketId=@SocketId", new { SocketId = sockets.SocketId });
+        await _dbService.Update<int>("UPDATE dbo.Sockets SET name=@Name WHERE SocketId=@SocketId", socketsViewModel);
+        return await _dbService.GetAsync<Sockets>("SELECT * From dbo.Sockets WHERE SocketId=@SocketId", new { SocketId = socketsViewModel.SocketId });
     }
 
     public async Task<bool> DeleteSocketsAsync(int key)

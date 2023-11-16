@@ -1,7 +1,7 @@
 ﻿@inject ISocketService SocketService
 @page "/fetchdata"
-@using PC_Designer.Shared
 @inject HttpClient Http
+@using PC_Designer.ViewModels
 
 <PageTitle>Sockets</PageTitle>
 
@@ -53,20 +53,21 @@ else
 </div>
 
 @code {
-@* 
-    [Inject] private ISocketService socketService { get; set; }
+
+    @* [Inject] private ISocketService socketService { get; set; }
     protected override void OnInitialized()
     {
         base.OnInitialized();
         Console.WriteLine($"Injected service name: {SocketService?.GetType().Name}");
     } *@
 
-    private List<Sockets>? sockets;
-    private Sockets currentSocket = new Sockets();  // for Create or Edit
+    private List<SocketsViewModel> sockets = new List<SocketsViewModel>();
+    private SocketsViewModel currentSocket = new SocketsViewModel();  // for Create or Edit
 
     protected override async Task OnInitializedAsync()
     {
-        sockets = await SocketService.GetSocketsAsync();
+        sockets = (await SocketService.GetSocketsAsync())?.Select
+        (socket => (SocketsViewModel)socket).ToList() ?? new List<SocketsViewModel>();
     }
 
     private async Task SaveSocket()
@@ -80,11 +81,13 @@ else
             await SocketService.UpdateSocketsAsync(currentSocket);
         }
         
-        sockets = await SocketService.GetSocketsAsync();    // Reload the list of Sockets
-        currentSocket = new Sockets();  // Reset the currentSocket for the next Create or Edit
+        var socketModels =  // Reload the list of Sockets
+        sockets = (await SocketService.GetSocketsAsync())?.Select
+        (socket => (SocketsViewModel)socket).ToList() ?? new List<SocketsViewModel>();
+        currentSocket = new SocketsViewModel();  // Reset the currentSocket for the next Create or Edit
     }
 
-    private void EditSocket(Sockets socket)
+    private void EditSocket(SocketsViewModel socket)
     {
         //  Set the currentSocket for editing
         currentSocket = socket;
@@ -93,7 +96,8 @@ else
     private async Task DeleteSocket(int SocketId)
     {
         await SocketService.DeleteSocketsAsync(SocketId);
-        sockets = await SocketService.GetSocketsAsync();
+        sockets = (await SocketService.GetSocketsAsync())?.Select
+        (socket => (SocketsViewModel)socket).ToList() ?? new List<SocketsViewModel>();
     }
 
 }

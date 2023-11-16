@@ -1,5 +1,5 @@
 using System.Net.Http.Json;
-using PC_Designer.Shared;
+using PC_Designer.ViewModels;
 
 public class ClientSocketService : ISocketService
 {
@@ -10,26 +10,26 @@ public class ClientSocketService : ISocketService
         _httpClient = httpClient;
     }
 
-    public async Task<List<Sockets>?> GetSocketsAsync()
+    public async Task<List<SocketsViewModel>?> GetSocketsAsync()
     {
         var response = await _httpClient.GetAsync("api/sockets");
         return response.IsSuccessStatusCode
-            ? await response.Content.ReadFromJsonAsync<List<Sockets>>()
+            ? await response.Content.ReadFromJsonAsync<List<SocketsViewModel>>()
             : null;
     }
 
-    public async Task<bool> CreateSocketsAsync(Sockets sockets)
+    public async Task<bool> CreateSocketsAsync(SocketsViewModel socketsViewModel)
     {
-        var response = await _httpClient.PostAsJsonAsync("api/sockets", sockets);
+        var response = await _httpClient.PostAsJsonAsync("api/sockets", socketsViewModel);
         return response.IsSuccessStatusCode;
     }
 
-    public async Task<Sockets?> UpdateSocketsAsync(Sockets sockets)
+    public async Task<SocketsViewModel?> UpdateSocketsAsync(SocketsViewModel socketsViewModel)
     {
-        var response = await _httpClient.PutAsJsonAsync($"api/sockets/{sockets.SocketId}", sockets);
+        var response = await _httpClient.PutAsJsonAsync($"api/sockets/{socketsViewModel.SocketId}", socketsViewModel);
         if (response.IsSuccessStatusCode)
         {
-            return await response.Content.ReadFromJsonAsync<Sockets>();
+            return await response.Content.ReadFromJsonAsync<SocketsViewModel>();
         }
         return null;
     }
