@@ -3,13 +3,11 @@ using System.Data.SqlClient;
 
 public class DbService : IDbService
 {
-    // private readonly IDbConnection? _db;
     private readonly string? _connectionString;
 
     public DbService(IConfiguration configuration)
     {
         _connectionString = configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("ConnectionString is null");
-        // if (_connectionString != null) { _db = new SqlConnection(_connectionString); }   
     }
 
     private async Task<List<T>> ExecuteQueryAsync<T>(string command, object parms)

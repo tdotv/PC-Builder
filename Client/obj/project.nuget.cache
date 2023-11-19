@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "wcSnELHPbqnTHjkfzI1cBbiji/4igs6rbzG2ud8vMQzRrCutAfXpgLDRoj6Qucrj89a7flQv/+Et16VxC9EnCg==",
+  "dgSpecHash": "WhXPTgy7nDA27781bDOs0RoxFg3gLrLE45qC6yqJoRhA3XmFh5W+R6pWkULJ79L1CpCn2Ga9EnOM5IFy008uLQ==",
   "success": true,
   "projectFilePath": "/home/tdotv/MyCode/PC_Designer/Client/PC_Designer.Client.csproj",
   "expectedPackageFiles": [
@@ -40,7 +40,7 @@
     "/home/tdotv/.nuget/packages/system.security.principal.windows/4.7.0/system.security.principal.windows.4.7.0.nupkg.sha512",
     "/home/tdotv/.nuget/packages/system.text.encodings.web/7.0.0/system.text.encodings.web.7.0.0.nupkg.sha512",
     "/home/tdotv/.nuget/packages/system.text.json/7.0.0/system.text.json.7.0.0.nupkg.sha512",
-    "/home/tdotv/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/7.0.13/microsoft.netcore.app.runtime.mono.browser-wasm.7.0.13.nupkg.sha512"
+    "/home/tdotv/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/7.0.14/microsoft.netcore.app.runtime.mono.browser-wasm.7.0.14.nupkg.sha512"
   ],
   "logs": []
 }

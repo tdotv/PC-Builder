@@ -1,5 +1,4 @@
-using System.Data;
-using System.Data.SqlClient;
+using PC_Designer.ViewModels;
 using Dapper;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +19,14 @@ builder.Services.AddRazorPages();
 // Dependency Ijections
 builder.Services.AddScoped<ISocketService, ServerSocketService>();
 builder.Services.AddScoped<IDbService, DbService>();
+// builder.Services.AddScoped<IProfileViewModel, ProfileViewModel>();
+
+builder.Services.AddHttpClient();
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddScoped<IProfileViewModel, ProfileViewModel>();
+builder.Services.AddHttpClient<ProfileViewModel>();
+
 
 // Map the column name with underscores to the model class
 DefaultTypeMap.MatchNamesWithUnderscores = true;
