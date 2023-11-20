@@ -22,7 +22,6 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
 builder.Services.AddScoped<IProfileViewModel, ProfileViewModel>();
-// builder.Services.AddHttpClient<ProfileViewModel>();
 
 // Dependency Ijections
 builder.Services.AddScoped<ISocketService, ClientSocketService>();

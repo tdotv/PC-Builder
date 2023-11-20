@@ -19,14 +19,10 @@ builder.Services.AddRazorPages();
 // Dependency Ijections
 builder.Services.AddScoped<ISocketService, ServerSocketService>();
 builder.Services.AddScoped<IDbService, DbService>();
-// builder.Services.AddScoped<IProfileViewModel, ProfileViewModel>();
+builder.Services.AddScoped<IProfileViewModel, ProfileViewModel>();
 
 builder.Services.AddHttpClient();
 builder.Services.AddHttpContextAccessor();
-
-builder.Services.AddScoped<IProfileViewModel, ProfileViewModel>();
-builder.Services.AddHttpClient<ProfileViewModel>();
-
 
 // Map the column name with underscores to the model class
 DefaultTypeMap.MatchNamesWithUnderscores = true;
@@ -41,7 +37,6 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
