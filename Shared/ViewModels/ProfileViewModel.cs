@@ -13,9 +13,14 @@ namespace PC_Designer.ViewModels
         public string EmailAddress { get; set; } = null!;
         public string Message { get; set; } = null!;
         public string ProfilePictureUrl { get; set; } = null!;
-        public byte[] DateOfBirth { get; set; } = null!;
+        public DateTime DateOfBirth { get; set; }
         public string AboutMe { get; set; } = null!;
+        public bool DarkTheme { get; set; }
+        public bool Notifications { get; set; }
+        public bool IsEditing { get; set; } = false;
+
         private HttpClient _httpClient = null!;
+
 
         public ProfileViewModel()
         { }
@@ -26,14 +31,28 @@ namespace PC_Designer.ViewModels
         {
             User user = this;
             await _httpClient.PutAsJsonAsync("user/updateprofile/1", user);
-            // Message = "Profile updated successfully";
+            Message = "Profile updated successfully";
         }
 
         public async Task GetProfile()
         {
             User? user = await _httpClient.GetFromJsonAsync<User>("user/getprofile/1");
-            LoadCurrentObject(user);
-            // Message = "Profile loaded successfully";
+            if (user != null)
+            {
+                LoadCurrentObject(user);
+                Message = "Profile loaded successfully";
+            }
+        }
+
+        public async Task Save()
+        {   
+            try
+            {
+                await _httpClient.GetFromJsonAsync<User>($"user/updatetheme?userId={1}&DarkTheme={this.DarkTheme.ToString()}");
+                await _httpClient.GetFromJsonAsync<User>($"user/updatenotifications?userId={1}&Notifications={this.Notifications.ToString()}");
+            }
+            catch (HttpRequestException httpEx) { Message = $"HTTP Request Error: {httpEx.Message}"; }
+            catch (Exception ex) { Message = $"Error: {ex.Message}"; }
         }
 
         private void LoadCurrentObject(ProfileViewModel profileViewModel)
@@ -44,6 +63,8 @@ namespace PC_Designer.ViewModels
             ProfilePictureUrl = profileViewModel.ProfilePictureUrl;
             DateOfBirth = profileViewModel.DateOfBirth;
             AboutMe = profileViewModel.AboutMe;
+            this.DarkTheme = profileViewModel.DarkTheme;
+            this.Notifications = profileViewModel.Notifications;
             //add more fields
         }
 
@@ -51,12 +72,14 @@ namespace PC_Designer.ViewModels
         {
             return new ProfileViewModel
             {
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                EmailAddress = user.EmailAddress,
-                ProfilePictureUrl = user.ProfilePictureUrl,
-                DateOfBirth = user.DateOfBirth,
-                AboutMe = user.AboutMe,
+                FirstName = user.FirstName ?? string.Empty,
+                LastName = user.LastName ?? string.Empty,
+                EmailAddress = user.EmailAddress ?? string.Empty,
+                ProfilePictureUrl = user.ProfilePictureUrl ?? string.Empty,
+                DateOfBirth = user.DateOfBirth ?? DateTime.MinValue,
+                AboutMe = user.AboutMe ?? string.Empty,
+                DarkTheme = user.DarkTheme != null && user.DarkTheme != 0,
+                Notifications = user.Notifications != null && user.Notifications != 0,
                 UserId = user.UserId
             };
         }
@@ -71,6 +94,8 @@ namespace PC_Designer.ViewModels
                 ProfilePictureUrl = profileViewModel.ProfilePictureUrl,
                 DateOfBirth = profileViewModel.DateOfBirth,
                 AboutMe = profileViewModel.AboutMe,
+                DarkTheme = profileViewModel.DarkTheme ? 1 : 0,
+                Notifications = profileViewModel.Notifications ? 1 : 0,
                 UserId = profileViewModel.UserId
             };
         }

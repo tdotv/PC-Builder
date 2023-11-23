@@ -11,9 +11,13 @@ namespace PC_Designer.ViewModels
         public string EmailAddress { get; set; }
         public string Message { get; set; }
         public string ProfilePictureUrl { get; set; }
-        public byte[] DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
         public string AboutMe { get; set; }
-
+        public bool Notifications { get; set; }
+        public bool DarkTheme { get; set; }
+        public bool IsEditing { get; set; }
+        
+        public Task Save();
         public Task UpdateProfile();
         public Task GetProfile();
     }
