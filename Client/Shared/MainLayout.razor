@@ -10,8 +10,8 @@
     <main>
         <AuthorizeView>
             <Authorized>
-                <div class="top-row px-4">
-                    <h4><b>Hello, @context.User.Identity.Name</b></h4> &nbsp;
+                <div class="top-row px-4" style="justify-content: center; text-align: center">
+                    <p><b>Hello, @context.User.Identity.Name</b></p> &nbsp;
                     <button class="btn btn-danger" @onclick="LogoutUser">Logout</button>
                 </div>
             </Authorized>

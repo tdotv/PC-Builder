@@ -873,19 +873,19 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-mfFqfxRvxPytlR8Z7RR83\/akNhJSFhQ59uMM7cneDNU=",
+      "hash": "sha256-gO81i93PR3rPXdw0n4cZnH0lmUC8eqp\/ydFDcxxi2x4=",
       "url": "_framework\/PC_Designer.Shared.dll"
     },
     {
-      "hash": "sha256-kmGmIRq4Bo9xMFTRS3KZZS76DwJDpeizot+tXAElbOs=",
+      "hash": "sha256-IxYaPuO3TT5rM7xAcgO1am4BkvIPp+qQv33Ax07Fsd4=",
       "url": "_framework\/PC_Designer.Shared.pdb"
     },
     {
-      "hash": "sha256-mdFlVkiyC1fGX03wYkTl39J3hEu+OBI5PPikOfY08Bk=",
+      "hash": "sha256-ro7OM5UQuLsKtOZrnhoeh6UsZidXlR\/Rl0k\/KkIKyTk=",
       "url": "_framework\/PC_Designer.Client.dll"
     },
     {
-      "hash": "sha256-Vb5esJ2bjojayPlSaKuM6e5KKWYwcelntIf6KL5lcIE=",
+      "hash": "sha256-X+VB3QwCD\/ONefiPFEPKBl1Yh7scCAEN+V1HmqFOS34=",
       "url": "_framework\/PC_Designer.Client.pdb"
     },
     {
@@ -893,9 +893,9 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-tHFYMx\/puGxmphVoKj+jL9ZvYLppotZ9AsL7EVdx5Bg=",
+      "hash": "sha256-8HS9icJdYUoqPesya9aZ4qdytcAwM3WFtlmg31oXJ28=",
       "url": "_framework\/blazor.boot.json"
     }
   ],
-  "version": "BUH1B5fm"
+  "version": "R209zPaH"
 };

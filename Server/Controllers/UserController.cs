@@ -1,11 +1,5 @@
 ﻿using PC_Designer.Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using PC_Designer.Server;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 
@@ -20,6 +14,12 @@ public class UserController : ControllerBase
     {
         this.logger = logger;
         this.dbService = dbService;
+    }
+
+    [HttpGet("getprofile/{userId}")]
+    public async Task<User> GetProfile(int userId)
+    {
+        return await dbService.GetAsync<User>("SELECT * FROM dbo.Users WHERE UserId = @UserId", new { UserId = userId });
     }
 
     [HttpPut("updateprofile/{userId}")]
@@ -39,12 +39,6 @@ public class UserController : ControllerBase
         }
 
         return user;
-    }
-
-    [HttpGet("getprofile/{userId}")]
-    public async Task<User> GetProfile(int userId)
-    {
-        return await dbService.GetAsync<User>("SELECT * FROM dbo.Users WHERE UserId = @UserId", new { UserId = userId });
     }
 
     //Authentication Methods
