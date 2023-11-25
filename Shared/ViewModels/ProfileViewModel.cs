@@ -30,13 +30,13 @@ namespace PC_Designer.ViewModels
         public async Task UpdateProfile()
         {
             User user = this;
-            await _httpClient.PutAsJsonAsync("user/updateprofile/1", user);
+            await _httpClient.PutAsJsonAsync("user/updateprofile/" + this.UserId, user);
             Message = "Profile updated successfully";
         }
 
         public async Task GetProfile()
         {
-            User? user = await _httpClient.GetFromJsonAsync<User>("user/getprofile/1");
+            User? user = await _httpClient.GetFromJsonAsync<User>("user/getprofile/" + this.UserId);
             if (user != null)
             {
                 LoadCurrentObject(user);
@@ -48,8 +48,8 @@ namespace PC_Designer.ViewModels
         {   
             try
             {
-                await _httpClient.GetFromJsonAsync<User>($"user/updatetheme?userId={1}&DarkTheme={this.DarkTheme.ToString()}");
-                await _httpClient.GetFromJsonAsync<User>($"user/updatenotifications?userId={1}&Notifications={this.Notifications.ToString()}");
+                await _httpClient.GetFromJsonAsync<User>($"user/updatetheme?userId={this.UserId}&DarkTheme={this.DarkTheme.ToString()}");
+                await _httpClient.GetFromJsonAsync<User>($"user/updatenotifications?userId={this.UserId}&Notifications={this.Notifications.ToString()}");
             }
             catch (HttpRequestException httpEx) { Message = $"HTTP Request Error: {httpEx.Message}"; }
             catch (Exception ex) { Message = $"Error: {ex.Message}"; }

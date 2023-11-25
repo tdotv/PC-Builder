@@ -2,6 +2,8 @@ using System.Data;
 
 using System.Data.SqlClient;
 
+using PC_Designer.Shared;
+
 public interface IDbService
 {
   Task<T> GetAsync<T>(string command, object parms);

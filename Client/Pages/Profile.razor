@@ -1,8 +1,9 @@
 ﻿@page "/profile"
 @using PC_Designer.ViewModels
 @using PC_Designer.Shared
+@using System.Security.Claims
 @inject IProfileViewModel _profileViewModel
-@* @inject IJSRuntime JSRuntime *@
+@inject NavigationManager _navigationManager
 
 @if (_profileViewModel == null)
 {
@@ -100,7 +101,26 @@ else
 }
 
 @code {
-    protected override async Task OnInitializedAsync() => await _profileViewModel.GetProfile();
+
+    [CascadingParameter]
+    public Task<AuthenticationState> authenticationState { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await authenticationState; // _authenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if(user.Identity.IsAuthenticated)
+        {
+            var claim = user.FindFirst(c => c.Type == ClaimTypes.NameIdentifier);
+            _profileViewModel.UserId = Convert.ToInt64(claim?.Value);
+            await _profileViewModel.GetProfile();
+        }
+        else
+        {
+            _navigationManager.NavigateTo("/");
+        }        
+    }
 
     private void ToggleEditMode()
     {

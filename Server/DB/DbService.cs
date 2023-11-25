@@ -1,5 +1,6 @@
 using Dapper;
 using System.Data.SqlClient;
+using PC_Designer.Shared;
 
 public class DbService : IDbService
 {

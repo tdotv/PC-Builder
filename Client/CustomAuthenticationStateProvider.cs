@@ -22,9 +22,10 @@ namespace PC_Designer.Client
             if (currentUser != null && currentUser.EmailAddress != null)
             { 
                  //create a claim
-                var claim = new Claim(ClaimTypes.Name, currentUser.EmailAddress);
+                var claimEmailAddress = new Claim(ClaimTypes.Name, currentUser.EmailAddress);
+                var claimNameIdentifier = new Claim(ClaimTypes.NameIdentifier, Convert.ToString(currentUser.UserId));
                 //create claimsIdentity
-                var claimsIdentity = new ClaimsIdentity(new[] { claim }, "serverAuth");
+                var claimsIdentity = new ClaimsIdentity(new[] { claimEmailAddress, claimNameIdentifier }, "serverAuth");
                 //create claimsPrincipal
                 var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
 
