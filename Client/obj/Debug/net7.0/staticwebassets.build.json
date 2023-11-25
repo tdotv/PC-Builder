@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qyO88RcS0GXvRdUGRwty4n8ic/3XkVhSP0mT8/g7DKw=",
+  "Hash": "se40ZlJKoXQlVt99kE47+/aRCfMvLtVxD8jLjpQp6f8=",
   "Source": "PC_Designer.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -185,6 +185,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/home/tdotv/.nuget/packages/microsoft.aspnetcore.authorization/7.0.13/lib/net7.0/Microsoft.AspNetCore.Authorization.dll"
+    },
+    {
+      "Identity": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/Microsoft.AspNetCore.Components.Authorization.dll",
+      "SourceId": "PC_Designer.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.AspNetCore.Components.Authorization.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/home/tdotv/.nuget/packages/microsoft.aspnetcore.components.authorization/6.0.1/lib/net6.0/Microsoft.AspNetCore.Components.Authorization.dll"
     },
     {
       "Identity": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/Microsoft.AspNetCore.Components.dll",
@@ -5557,6 +5574,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/Microsoft.JSInterop.dll"
+    },
+    {
+      "Identity": "/home/tdotv/MyCode/PC_Designer/Client/obj/Debug/net7.0/build-gz/nOKB1FOh.gz",
+      "SourceId": "PC_Designer.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.AspNetCore.Components.Authorization.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/Microsoft.AspNetCore.Components.Authorization.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/Microsoft.AspNetCore.Components.Authorization.dll"
     },
     {
       "Identity": "/home/tdotv/MyCode/PC_Designer/Client/obj/Debug/net7.0/build-gz/nsMS0CMc.gz",

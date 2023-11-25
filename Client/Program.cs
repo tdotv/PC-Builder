@@ -14,17 +14,24 @@ using Microsoft.Extensions.Logging;
 // using PC_Designer.LocalStorage;
 // using PC_Designer.Client.Handlers;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Components.Authorization;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
+builder.Services.AddOptions();
+builder.Services.AddAuthorizationCore();
+
 builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
 builder.Services.AddScoped<IProfileViewModel, ProfileViewModel>();
+builder.Services.AddScoped<ILoginViewModel, LoginViewModel>();
 
 // Dependency Ijections
 builder.Services.AddScoped<ISocketService, ClientSocketService>();
+
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 
 // builder.Services.AddDapper
 

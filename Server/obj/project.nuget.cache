@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ws/AVlLv5i/3j/qpZ9dYhcNYd8w5+YWt3xiGmWE/20DWLXvWDhj5t/QWxfHcIXs1nlLJV1E89HeOsFmDiSTEOQ==",
+  "dgSpecHash": "oD91U4eSiipvgoTKNYdRVvCvf0TubbCvKqOenyAAQxvBa7LfMKk8Y/N2BAvmzG0Et/4LOnLxEApuj9fFfEWJCQ==",
   "success": true,
   "projectFilePath": "/home/tdotv/MyCode/PC_Designer/Server/PC_Designer.Server.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "/home/tdotv/.nuget/packages/microsoft.aspnetcore.authorization/7.0.13/microsoft.aspnetcore.authorization.7.0.13.nupkg.sha512",
     "/home/tdotv/.nuget/packages/microsoft.aspnetcore.components/7.0.13/microsoft.aspnetcore.components.7.0.13.nupkg.sha512",
     "/home/tdotv/.nuget/packages/microsoft.aspnetcore.components.analyzers/7.0.13/microsoft.aspnetcore.components.analyzers.7.0.13.nupkg.sha512",
+    "/home/tdotv/.nuget/packages/microsoft.aspnetcore.components.authorization/6.0.1/microsoft.aspnetcore.components.authorization.6.0.1.nupkg.sha512",
     "/home/tdotv/.nuget/packages/microsoft.aspnetcore.components.forms/7.0.13/microsoft.aspnetcore.components.forms.7.0.13.nupkg.sha512",
     "/home/tdotv/.nuget/packages/microsoft.aspnetcore.components.web/7.0.13/microsoft.aspnetcore.components.web.7.0.13.nupkg.sha512",
     "/home/tdotv/.nuget/packages/microsoft.aspnetcore.components.webassembly/7.0.13/microsoft.aspnetcore.components.webassembly.7.0.13.nupkg.sha512",

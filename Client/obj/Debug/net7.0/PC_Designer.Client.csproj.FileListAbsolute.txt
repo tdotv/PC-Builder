@@ -842,3 +842,7 @@
 /home/tdotv/MyCode/PC_Designer/Client/obj/Debug/net7.0/build-gz/VLQfLBxs.gz
 /home/tdotv/MyCode/PC_Designer/Client/obj/Debug/net7.0/build-gz/JEUF2XTJ.gz
 /home/tdotv/MyCode/PC_Designer/Client/obj/Debug/net7.0/build-gz/w0CXowG8.gz
+/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/Microsoft.AspNetCore.Components.Authorization.dll
+/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/Microsoft.AspNetCore.Components.Authorization.dll.gz
+/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/Microsoft.AspNetCore.Components.Authorization.dll
+/home/tdotv/MyCode/PC_Designer/Client/obj/Debug/net7.0/build-gz/nOKB1FOh.gz
