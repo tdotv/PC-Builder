@@ -1,19 +1,10 @@
+global using Microsoft.AspNetCore.Components.Authorization;
+global using Blazored.LocalStorage;
+
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using PC_Designer.Client;
 using PC_Designer.ViewModels;
-
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-// using Microsoft.AspNetCore.Components.Authorization;
-// using PC_Designer.Client.Logging;
-// using PC_Designer.Toast;
-// using PC_Designer.LocalStorage;
-// using PC_Designer.Client.Handlers;
-using Microsoft.Extensions.Configuration;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -25,6 +16,9 @@ builder.Services.AddScoped<IProfileViewModel, ProfileViewModel>();
 
 // Dependency Ijections
 builder.Services.AddScoped<ISocketService, ClientSocketService>();
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
+builder.Services.AddAuthorizationCore();
+builder.Services.AddBlazoredLocalStorage();
 
 // builder.Services.AddDapper
 

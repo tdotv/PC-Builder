@@ -18,6 +18,17 @@
           "PC_Designer.Server.dll": {}
         }
       },
+      "Blazored.LocalStorage/4.1.5": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "7.0.13"
+        },
+        "runtime": {
+          "lib/net5.0/Blazored.LocalStorage.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Dapper/2.1.21": {
         "runtime": {
           "lib/net7.0/Dapper.dll": {
@@ -52,6 +63,12 @@
         }
       },
       "Microsoft.AspNetCore.Components.Analyzers/7.0.13": {},
+      "Microsoft.AspNetCore.Components.Authorization/6.0.1": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Authorization": "7.0.13",
+          "Microsoft.AspNetCore.Components": "7.0.13"
+        }
+      },
       "Microsoft.AspNetCore.Components.Forms/7.0.13": {
         "dependencies": {
           "Microsoft.AspNetCore.Components": "7.0.13"
@@ -300,6 +317,8 @@
       },
       "PC_Designer.Client/1.0.0": {
         "dependencies": {
+          "Blazored.LocalStorage": "4.1.5",
+          "Microsoft.AspNetCore.Components.Authorization": "6.0.1",
           "Microsoft.AspNetCore.Components.WebAssembly": "7.0.13",
           "PC_Designer.Shared": "1.0.0"
         },
@@ -322,6 +341,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Blazored.LocalStorage/4.1.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-i9v27ScPOsHv6skc+isE+DZ/mtR53w019Nq2/MnjvpiLV2otbnqqyxfiYnXAU0Ho6MBIvAS2gdf+odbAyDZPzw==",
+      "path": "blazored.localstorage/4.1.5",
+      "hashPath": "blazored.localstorage.4.1.5.nupkg.sha512"
     },
     "Dapper/2.1.21": {
       "type": "package",
@@ -350,6 +376,13 @@
       "sha512": "sha512-i/gFyeRuLYG6mB5zEFsJuVaavy5HFghpiZkRcqeFyb+rKGsUTjEQH46d+/+Rj4oPWtrhu/r0PPaR8nTtf8A/kA==",
       "path": "microsoft.aspnetcore.components.analyzers/7.0.13",
       "hashPath": "microsoft.aspnetcore.components.analyzers.7.0.13.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Components.Authorization/6.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cVE/z0bqqm1myMBK1pa/an9Z31V4eGb0E9c7gmiiViIq2bTz4TYFwkc9QlXwLwx1EKjNapi/+pTGITHI1ZIzKw==",
+      "path": "microsoft.aspnetcore.components.authorization/6.0.1",
+      "hashPath": "microsoft.aspnetcore.components.authorization.6.0.1.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Components.Forms/7.0.13": {
       "type": "package",

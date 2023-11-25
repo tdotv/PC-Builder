@@ -1,9 +1,20 @@
 ﻿@page "/"
+@attribute [Authorize]
+@* @attribute [Authorize (Roles = "admin")] *@
 
 <PageTitle>Index</PageTitle>
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+
+<AuthorizeView Roles="Iron Man">
+    <NotAuthorized>
+        U are not auth
+    </NotAuthorized>
+    <Authorized>
+        Hi @context.User.Identity.Name
+    </Authorized>
+</AuthorizeView>
 
 <SurveyPrompt Title="How is Blazor working for you?" />

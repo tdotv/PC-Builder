@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wndh9lteAXErvjDkm8uPBvGRMGmPuzl9Rcbiy6RGtAY=",
+  "Hash": "X1U9DLSoXakuFACGSy5Cz/9RpJ3HGSdi+RQGPeAPjMQ=",
   "Source": "PC_Designer.Server",
   "BasePath": "_content/PC_Designer.Server",
   "Mode": "Default",
@@ -61,6 +61,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/home/tdotv/.nuget/packages/microsoft.aspnetcore.components.webassembly/7.0.13/build/net7.0/blazor.webassembly.js"
+    },
+    {
+      "Identity": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/Blazored.LocalStorage.dll",
+      "SourceId": "PC_Designer.Client",
+      "SourceType": "Project",
+      "ContentRoot": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/Blazored.LocalStorage.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/home/tdotv/.nuget/packages/blazored.localstorage/4.1.5/lib/net5.0/Blazored.LocalStorage.dll"
     },
     {
       "Identity": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/dotnet.7.0.14.khq7qvdxwc.js",
@@ -197,6 +214,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/home/tdotv/.nuget/packages/microsoft.aspnetcore.authorization/7.0.13/lib/net7.0/Microsoft.AspNetCore.Authorization.dll"
+    },
+    {
+      "Identity": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/Microsoft.AspNetCore.Components.Authorization.dll",
+      "SourceId": "PC_Designer.Client",
+      "SourceType": "Project",
+      "ContentRoot": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.AspNetCore.Components.Authorization.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/home/tdotv/.nuget/packages/microsoft.aspnetcore.components.authorization/6.0.1/lib/net6.0/Microsoft.AspNetCore.Components.Authorization.dll"
     },
     {
       "Identity": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/Microsoft.AspNetCore.Components.dll",
@@ -5571,6 +5605,23 @@
       "OriginalItemSpec": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/Microsoft.JSInterop.dll"
     },
     {
+      "Identity": "/home/tdotv/MyCode/PC_Designer/Client/obj/Debug/net7.0/build-gz/nOKB1FOh.gz",
+      "SourceId": "PC_Designer.Client",
+      "SourceType": "Project",
+      "ContentRoot": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.AspNetCore.Components.Authorization.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/Microsoft.AspNetCore.Components.Authorization.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/Microsoft.AspNetCore.Components.Authorization.dll"
+    },
+    {
       "Identity": "/home/tdotv/MyCode/PC_Designer/Client/obj/Debug/net7.0/build-gz/nsMS0CMc.gz",
       "SourceId": "PC_Designer.Client",
       "SourceType": "Project",
@@ -6079,6 +6130,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/System.Linq.Expressions.dll"
+    },
+    {
+      "Identity": "/home/tdotv/MyCode/PC_Designer/Client/obj/Debug/net7.0/build-gz/RuySrYHE.gz",
+      "SourceId": "PC_Designer.Client",
+      "SourceType": "Project",
+      "ContentRoot": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/Blazored.LocalStorage.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/Blazored.LocalStorage.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/Blazored.LocalStorage.dll"
     },
     {
       "Identity": "/home/tdotv/MyCode/PC_Designer/Client/obj/Debug/net7.0/build-gz/rwG40j+K.gz",

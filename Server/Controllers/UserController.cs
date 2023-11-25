@@ -10,13 +10,17 @@ using Microsoft.Extensions.Logging;
 [Route("[controller]")]
 public class UserController : ControllerBase
 {
-    private readonly ILogger<UserController> logger;
     private readonly IDbService dbService;
 
-    public UserController(ILogger<UserController> logger, IDbService dbService)
+    public UserController(IDbService dbService)
     {
-        this.logger = logger;
         this.dbService = dbService;
+    }
+
+    [HttpGet("getprofile/{userId}")]
+    public async Task<User> GetProfile(int userId)
+    {
+        return await dbService.GetAsync<User>("SELECT * FROM dbo.Users WHERE UserId = @UserId", new { UserId = userId });
     }
 
     [HttpPut("updateprofile/{userId}")]
@@ -36,12 +40,6 @@ public class UserController : ControllerBase
         }
 
         return user;
-    }
-
-    [HttpGet("getprofile/{userId}")]
-    public async Task<User> GetProfile(int userId)
-    {
-        return await dbService.GetAsync<User>("SELECT * FROM dbo.Users WHERE UserId = @UserId", new { UserId = userId });
     }
 
     [HttpGet("updatetheme")]

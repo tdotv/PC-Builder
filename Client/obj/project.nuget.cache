@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "WhXPTgy7nDA27781bDOs0RoxFg3gLrLE45qC6yqJoRhA3XmFh5W+R6pWkULJ79L1CpCn2Ga9EnOM5IFy008uLQ==",
+  "dgSpecHash": "K6MOJhm9t6vE8C3cy2HLpachlFCeGX0L36KNEcXDATmlGc0hIGxbkMrooXjYuRZKrp/RHjnFDt3B6KY/W8G4UQ==",
   "success": true,
   "projectFilePath": "/home/tdotv/MyCode/PC_Designer/Client/PC_Designer.Client.csproj",
   "expectedPackageFiles": [
+    "/home/tdotv/.nuget/packages/blazored.localstorage/4.1.5/blazored.localstorage.4.1.5.nupkg.sha512",
     "/home/tdotv/.nuget/packages/microsoft.aspnetcore.authorization/7.0.13/microsoft.aspnetcore.authorization.7.0.13.nupkg.sha512",
     "/home/tdotv/.nuget/packages/microsoft.aspnetcore.components/7.0.13/microsoft.aspnetcore.components.7.0.13.nupkg.sha512",
     "/home/tdotv/.nuget/packages/microsoft.aspnetcore.components.analyzers/7.0.13/microsoft.aspnetcore.components.analyzers.7.0.13.nupkg.sha512",
+    "/home/tdotv/.nuget/packages/microsoft.aspnetcore.components.authorization/6.0.1/microsoft.aspnetcore.components.authorization.6.0.1.nupkg.sha512",
     "/home/tdotv/.nuget/packages/microsoft.aspnetcore.components.forms/7.0.13/microsoft.aspnetcore.components.forms.7.0.13.nupkg.sha512",
     "/home/tdotv/.nuget/packages/microsoft.aspnetcore.components.web/7.0.13/microsoft.aspnetcore.components.web.7.0.13.nupkg.sha512",
     "/home/tdotv/.nuget/packages/microsoft.aspnetcore.components.webassembly/7.0.13/microsoft.aspnetcore.components.webassembly.7.0.13.nupkg.sha512",
