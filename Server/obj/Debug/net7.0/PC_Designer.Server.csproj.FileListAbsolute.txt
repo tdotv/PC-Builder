@@ -60,3 +60,5 @@
 /home/tdotv/MyCode/PC_Designer/Server/obj/Debug/net7.0/PC_Designer.Server.pdb
 /home/tdotv/MyCode/PC_Designer/Server/obj/Debug/net7.0/PC_Designer.Server.genruntimeconfig.cache
 /home/tdotv/MyCode/PC_Designer/Server/obj/Debug/net7.0/ref/PC_Designer.Server.dll
+/home/tdotv/MyCode/PC_Designer/Server/bin/Debug/net7.0/Radzen.Blazor.dll
+/home/tdotv/MyCode/PC_Designer/Server/bin/Debug/net7.0/System.Linq.Dynamic.Core.dll

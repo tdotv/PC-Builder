@@ -846,3 +846,11 @@
 /home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/Microsoft.AspNetCore.Components.Authorization.dll.gz
 /home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/Microsoft.AspNetCore.Components.Authorization.dll
 /home/tdotv/MyCode/PC_Designer/Client/obj/Debug/net7.0/build-gz/nOKB1FOh.gz
+/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/Radzen.Blazor.dll
+/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/System.Linq.Dynamic.Core.dll
+/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/System.Linq.Dynamic.Core.dll.gz
+/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/wwwroot/_framework/Radzen.Blazor.dll.gz
+/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/Radzen.Blazor.dll
+/home/tdotv/MyCode/PC_Designer/Client/bin/Debug/net7.0/System.Linq.Dynamic.Core.dll
+/home/tdotv/MyCode/PC_Designer/Client/obj/Debug/net7.0/build-gz/J0we2+C2.gz
+/home/tdotv/MyCode/PC_Designer/Client/obj/Debug/net7.0/build-gz/9PEQl6Ao.gz

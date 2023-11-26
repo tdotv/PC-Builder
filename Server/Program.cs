@@ -1,6 +1,7 @@
 using PC_Designer.ViewModels;
 using Dapper;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using PC_Designer.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -20,7 +21,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddAuthentication(options =>
     {
         options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    }).AddCookie();
+    }).AddCookie(options => {options.LoginPath = "/user/notauthorized"; });
 
 // Dependency Ijections
 builder.Services.AddScoped<ISocketService, ServerSocketService>();

@@ -1,12 +1,12 @@
 ﻿using PC_Designer.Shared;
-using PC_Designer.Server;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
-using PC_Designer.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 [ApiController]
 [Route("[controller]")]
+[Authorize]
 public class UserController : ControllerBase
 {
     private readonly ILogger<UserController> logger;
@@ -60,9 +60,9 @@ public class UserController : ControllerBase
             //create claimsIdentity
             var claimsIdentity = new ClaimsIdentity(new[] { claim }, "serverAuth");
             //create claimsPrincipal
-            var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+            var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);                
             //Sign In User
-            await HttpContext.SignInAsync(claimsPrincipal);
+            await HttpContext.SignInAsync(claimsPrincipal, GetAuthenticationProperties());
         }
 
         return await Task.FromResult(loggedInUser);
@@ -138,5 +138,15 @@ public class UserController : ControllerBase
         {
             throw;
         }
+    }
+
+    public AuthenticationProperties GetAuthenticationProperties()
+    {
+        return new AuthenticationProperties()
+        {
+            IsPersistent = true,
+            ExpiresUtc = DateTime.Now.AddSeconds(30),
+            RedirectUri = "/profile",
+        };
     }
 }

@@ -1,10 +1,12 @@
 ﻿@page "/profile"
 @using PC_Designer.ViewModels
 @using PC_Designer.Shared
+@using Radzen.Blazor
 @using System.Security.Claims
 @inject IConfiguration config
 @inject IProfileViewModel _profileViewModel
 @inject NavigationManager _navigationManager
+@inject HttpClient _httpClient
 
 @if (_profileViewModel == null)
 {
@@ -12,10 +14,10 @@
 }
 else
 {
-    <div class="card mb-3">
-        <div class="col-md-8">
+    <div class="card mb-3 " >
+        <div class="col-md-8 ">
             <div class="row justify-content-ceter align-items-center">
-                <div class="col-md-4 text-center">
+                <div class="col-md-4 text-center" >
                     @if(_profileViewModel.ProfilePictureData != null)
                     {
                         <img src="data:image/png;base64,@Convert.ToBase64String(_profileViewModel.ProfilePictureData)" alt="Profile picture" 
@@ -88,41 +90,34 @@ else
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Settings</h5>
+                    <h6 class="card-title">Settings</h6>
 
-                    <div class="col-12">
-                        <input type="checkbox" @bind="@_profileViewModel.DarkTheme" id="chkDarkTheme">
-                        <label> Dark Theme </label>    
-                        <br>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div>
+                            <RadzenSwitch @bind-Value="@_profileViewModel.Notifications" />
+                            <span>&nbsp;</span>
+                            <label style="margin-right: 15px;"> Notification </label>  
 
-                        <input type="checkbox" @bind="@_profileViewModel.Notifications" id="chkNotification">
-                        <label> Notification </label>    
-                        <br>   
+                            <RadzenSwitch @bind-Value="@_profileViewModel.DarkTheme" />
+                            <span>&nbsp;</span>
+                            <label> Dark Theme </label> 
+                        </div>
+                        
                     </div>
-                    <div class="col-12">
+                    <div >
                         <button class="btn btn-primary" @onclick="_profileViewModel.Save">Save</button>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 }
 
-@if (errors.Count > 0)
-{
-    <h2>Errors</h2>
-    <ul class="text-danger">
-        @foreach (var error in errors)
-        {
-            <li>@error</li>
-        }
-    </ul>
-}
-
 @code {
 
     [CascadingParameter]
-    public Task<AuthenticationState> authenticationState { get; set; }
+    public Task<AuthenticationState> authenticationState { get; set; } = null!;
     private long maxFileSize = 1024 * 1024 * 1;
     private int maxAllowedFiles = 1;
     private List<string> errors = new();
@@ -136,7 +131,18 @@ else
         {
             var claim = user.FindFirst(c => c.Type == ClaimTypes.NameIdentifier);
             _profileViewModel.UserId = Convert.ToInt64(claim?.Value);
-            await _profileViewModel.GetProfile();
+            try
+            {
+                await _profileViewModel.GetProfile();
+            }
+            catch (System.Net.Http.HttpRequestException ex)
+            {
+                if(ex.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                {
+                    await _httpClient.GetAsync("user/logoutuser");
+                    _navigationManager.NavigateTo("/", true);
+                }
+            }
         }
         else
         {
