@@ -35,9 +35,10 @@ public class UserController : ControllerBase
             userToUpdate.LastName = user.LastName;
             userToUpdate.EmailAddress = user.EmailAddress;
             userToUpdate.AboutMe = user.AboutMe;
+            userToUpdate.ProfilePictureData = user.ProfilePictureData;
 
-            await dbService.Update<User>("UPDATE dbo.Users SET FirstName=@FirstName, LastName=@LastName, EmailAddress=@EmailAddress, AboutMe=@AboutMe WHERE UserId=@UserId",
-             userToUpdate);
+            await dbService.Update<User>("UPDATE dbo.Users SET FirstName=@FirstName, LastName=@LastName, EmailAddress=@EmailAddress, AboutMe=@AboutMe, ProfilePictureData=@ProfilePictureData WHERE UserId=@UserId",
+                userToUpdate);
         }
 
         return user;

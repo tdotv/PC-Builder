@@ -1,26 +1,24 @@
 using PC_Designer.Shared;
-using System.Net.Http;
 using System.Net.Http.Json;
-using System.Threading.Tasks;
+
+#nullable disable
 
 namespace PC_Designer.ViewModels
 {
     public class ProfileViewModel : IProfileViewModel
     {
         public long UserId { get; set; }
-        public string FirstName { get; set; } = null!;
-        public string LastName { get; set; } = null!;
-        public string EmailAddress { get; set; } = null!;
-        public string Message { get; set; } = null!;
-        public string ProfilePictureUrl { get; set; } = null!;
-        public DateTime DateOfBirth { get; set; }
-        public string AboutMe { get; set; } = null!;
-        public bool DarkTheme { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string EmailAddress { get; set; }
+        public string Message { get; set; }
+        public string AboutMe { get; set; }
+        public byte[] ProfilePictureData { get; set; }
         public bool Notifications { get; set; }
-        public bool IsEditing { get; set; } = false;
+        public bool DarkTheme { get; set; }
 
-        private HttpClient _httpClient = null!;
-
+        public bool IsEditing { get; set; }
+        private readonly HttpClient _httpClient;
 
         public ProfileViewModel()
         { }
@@ -34,9 +32,18 @@ namespace PC_Designer.ViewModels
             Message = "Profile updated successfully";
         }
 
+        public async Task UpdateProfileWithImage(byte[] imageBytes)
+        {
+            User user = this;
+            user.ProfilePictureData = imageBytes;
+
+            await _httpClient.PutAsJsonAsync("user/updateprofile/" + this.UserId, user);
+            Message = "profile updated successfully";
+        }
+
         public async Task GetProfile()
         {
-            User? user = await _httpClient.GetFromJsonAsync<User>("user/getprofile/" + this.UserId);
+            User user = await _httpClient.GetFromJsonAsync<User>("user/getprofile/" + this.UserId);
             if (user != null)
             {
                 LoadCurrentObject(user);
@@ -57,12 +64,11 @@ namespace PC_Designer.ViewModels
 
         private void LoadCurrentObject(ProfileViewModel profileViewModel)
         {
-            FirstName = profileViewModel.FirstName;
-            LastName = profileViewModel.LastName;
-            EmailAddress = profileViewModel.EmailAddress;
-            ProfilePictureUrl = profileViewModel.ProfilePictureUrl;
-            DateOfBirth = profileViewModel.DateOfBirth;
-            AboutMe = profileViewModel.AboutMe;
+            this.FirstName = profileViewModel.FirstName;
+            this.LastName = profileViewModel.LastName;
+            this.EmailAddress = profileViewModel.EmailAddress;
+            this.AboutMe = profileViewModel.AboutMe;
+            this.ProfilePictureData = profileViewModel.ProfilePictureData;
             this.DarkTheme = profileViewModel.DarkTheme;
             this.Notifications = profileViewModel.Notifications;
             //add more fields
@@ -72,14 +78,13 @@ namespace PC_Designer.ViewModels
         {
             return new ProfileViewModel
             {
-                FirstName = user.FirstName ?? string.Empty,
-                LastName = user.LastName ?? string.Empty,
-                EmailAddress = user.EmailAddress ?? string.Empty,
-                ProfilePictureUrl = user.ProfilePictureUrl ?? string.Empty,
-                DateOfBirth = user.DateOfBirth ?? DateTime.MinValue,
-                AboutMe = user.AboutMe ?? string.Empty,
-                DarkTheme = user.DarkTheme != null && user.DarkTheme != 0,
-                Notifications = user.Notifications != null && user.Notifications != 0,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                EmailAddress = user.EmailAddress,
+                AboutMe = user.AboutMe,
+                ProfilePictureData = user.ProfilePictureData,
+                DarkTheme = (user.DarkTheme == null || (long)user.DarkTheme == 0) ? false : true,
+                Notifications = (user.Notifications == null || (long)user.Notifications == 0) ? false : true,
                 UserId = user.UserId
             };
         }
@@ -91,9 +96,8 @@ namespace PC_Designer.ViewModels
                 FirstName = profileViewModel.FirstName,
                 LastName = profileViewModel.LastName,
                 EmailAddress = profileViewModel.EmailAddress,
-                ProfilePictureUrl = profileViewModel.ProfilePictureUrl,
-                DateOfBirth = profileViewModel.DateOfBirth,
                 AboutMe = profileViewModel.AboutMe,
+                ProfilePictureData = profileViewModel.ProfilePictureData,
                 DarkTheme = profileViewModel.DarkTheme ? 1 : 0,
                 Notifications = profileViewModel.Notifications ? 1 : 0,
                 UserId = profileViewModel.UserId
