@@ -29,6 +29,8 @@
                                 </div>
                                 <div class="d-flex mb-5 align-items-center">
                                     <label class="control control--checkbox mb-0">
+                                        <span class="caption">Remember Me</span>
+                                        <input @bind-value="@_loginViewModel.RememberMe" style="margin-right: 15px;" type="checkbox" checked="checked">
                                         <div class="control__indicator"></div>
                                     </label>
                                     <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>
@@ -37,13 +39,7 @@
                                 <span class="d-block text-left my-4 text-muted">&mdash; or login with &mdash;</span>
                                 @* <div class="social-login">
                                     <a href="#" class="facebook">
-                                        <span class="icon-facebook mr-3"></span>
-                                    </a>
-                                    <a href="#" class="twitter">
-                                        <span class="icon-twitter mr-3"></span>
-                                    </a>
-                                    <a href="#" class="google">
-                                        <span class="icon-google mr-3"></span>
+                                        <span class="icon-vk mr-3"></span>
                                     </a>
                                 </div> *@
                             </form>
@@ -56,9 +52,27 @@
 </body>
 
 @code {
+    [CascadingParameter]
+    public Task<AuthenticationState> authenticationState { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await authenticationState;
+        var user = authState.User;
+        if(user.Identity.IsAuthenticated)
+        {
+            NavigateToProfile();
+        }
+    }
+
     public async Task LoginUser()
     {
         await _loginViewModel.LoginUser();
+        NavigateToProfile();
+    }
+
+    public void NavigateToProfile()
+    {
         _navigationManager.NavigateTo("/profile",true);
     }
 }

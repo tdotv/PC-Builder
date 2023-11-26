@@ -7,6 +7,7 @@
 @inject IProfileViewModel _profileViewModel
 @inject NavigationManager _navigationManager
 @inject HttpClient _httpClient
+@inject IJSRuntime _jsRuntime
 
 @if (_profileViewModel == null)
 {
@@ -94,18 +95,18 @@ else
 
                     <div class="row" style="margin-bottom: 10px;">
                         <div>
-                            <RadzenSwitch @bind-Value="@_profileViewModel.Notifications" />
-                            <span>&nbsp;</span>
+                            <RadzenSwitch @bind-Value="@_profileViewModel.Notifications" Change="UpdateTheme" />
+                            <span>&nbsp; &nbsp;</span>
                             <label style="margin-right: 15px;"> Notification </label>  
 
-                            <RadzenSwitch @bind-Value="@_profileViewModel.DarkTheme" />
-                            <span>&nbsp;</span>
+                            <RadzenSwitch @bind-Value="@_profileViewModel.DarkTheme" Change="UpdateNotifications" />
+                            <span>&nbsp; &nbsp;</span>
                             <label> Dark Theme </label> 
                         </div>
                         
                     </div>
                     <div >
-                        <button class="btn btn-primary" @onclick="_profileViewModel.Save">Save</button>
+                        <button class="btn btn-primary" @onclick="UpdateTheme">Save</button>
                     </div>
 
                 </div>
@@ -159,12 +160,25 @@ else
         var buffer = new byte[file.Size];
         await file.OpenReadStream(1512000).ReadAsync(buffer);
 
-        //convert byte array to base 64 string
-        @* _profileViewModel.ProfilePictureUrl = $"data:image/svg;base64,{Convert.ToBase64String(buffer)}"; *@
-
-        _profileViewModel.ProfilePictureData = buffer;
+        //get byte array
+        _profileViewModel.ProfilePictureData = buffer;  //  $"data:image/svg;base64,{Convert.ToBase64String(buffer)}"
 
         await _profileViewModel.UpdateProfileWithImage(buffer);
+    }
+
+    private async Task UpdateTheme()
+    {
+        var themeName = _profileViewModel.DarkTheme ? "dark" : "light";
+
+        var module = await _jsRuntime.InvokeAsync<IJSObjectReference>("import","./js/site.js");
+        await module.InvokeVoidAsync("setTheme", themeName);
+        
+        await _profileViewModel.UpdateTheme();
+    }
+
+    private async Task UpdateNotifications()
+    {
+        await _profileViewModel.UpdateNotifications();
     }
 
     private async Task LoadFiles(InputFileChangeEventArgs e)    // Local Upload

@@ -1,6 +1,10 @@
 ﻿self.assetsManifest = {
   "assets": [
     {
+      "hash": "sha256-xZIjLJe98FX2G7xBDEcmxG6O0X7lF69N7Yxmn5vMEBI=",
+      "url": "css\/app-dark.css"
+    },
+    {
       "hash": "sha256-10KEeWxsgry5D9LUZc0K86lpIg9RcWdyyBB5sXq6Ypk=",
       "url": "css\/app.css"
     },
@@ -61,8 +65,12 @@
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-1b3Yc5d+Ey7Ow2O2cCx+61gfgvs\/U1Z8sDHAkM\/rBGo=",
+      "hash": "sha256-4W3OauqCKvBMKI5bANd42ujf9S6KcWg\/oPvj5PTQa\/s=",
       "url": "index.html"
+    },
+    {
+      "hash": "sha256-rqybWBl5\/Fm8xwpPjVokiuNC2AUCdC9cqGHohRS2j7I=",
+      "url": "js\/site.js"
     },
     {
       "hash": "sha256-p2BXlUowd8ji8JtCZ3u62Db+sWGl0JR+SjAmPtTzAKM=",
@@ -881,19 +889,19 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-pkdMscbzTjPyp2mwZHIBJg5+4c6SiHBwtnay6nQT0Ms=",
+      "hash": "sha256-gEAPFXEpQM4ysi36WpwnaZu4SKPP3hZr3gIpzc\/ybQE=",
       "url": "_framework\/PC_Designer.Shared.dll"
     },
     {
-      "hash": "sha256-IWaH6YP0fx+13QOsWuTgA0yy08e+ePFiSyMEZ8TL3QQ=",
+      "hash": "sha256-ET\/4KyBQdmTMRQJi1ulWP5N2krWjqjL\/ru3Q4y7ZH+g=",
       "url": "_framework\/PC_Designer.Shared.pdb"
     },
     {
-      "hash": "sha256-4tZVRwg682+nZWNa2E1eBu35P6bYRzfBXew\/nZNiosM=",
+      "hash": "sha256-3b3zxe3hd2uRl1T1AN6baUxJyGpRgyzKwEx46+LdXLQ=",
       "url": "_framework\/PC_Designer.Client.dll"
     },
     {
-      "hash": "sha256-31U2Sdf3i9M0AqpAzTFyPOjwe\/rRCkvzPyopwz3B68s=",
+      "hash": "sha256-RX74oqsjnXZ20HsuUvcN3PQ1Q9f2KCxPV0WdwfAnX\/k=",
       "url": "_framework\/PC_Designer.Client.pdb"
     },
     {
@@ -901,7 +909,7 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-JV29ddzoVk9Vu9hQEuzVmv6x13VGysFcCxR0ANiWOL4=",
+      "hash": "sha256-kB4jTxE44Lo7DdJv1creUMC8Mh3pJs\/BbXYdf5dj2aM=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -1077,5 +1085,5 @@
       "url": "_content\/Radzen.Blazor\/Radzen.Blazor.js"
     }
   ],
-  "version": "rjnyyA2P"
+  "version": "QVpegaAe"
 };

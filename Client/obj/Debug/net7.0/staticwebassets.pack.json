@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets/service-worker.js"
     },
     {
+      "Id": "/home/tdotv/MyCode/PC_Designer/Client/wwwroot/css/app-dark.css",
+      "PackagePath": "staticwebassets/css/app-dark.css"
+    },
+    {
       "Id": "/home/tdotv/MyCode/PC_Designer/Client/wwwroot/css/app.css",
       "PackagePath": "staticwebassets/css/app.css"
     },
@@ -83,6 +87,10 @@
     {
       "Id": "/home/tdotv/MyCode/PC_Designer/Client/wwwroot/index.html",
       "PackagePath": "staticwebassets/index.html"
+    },
+    {
+      "Id": "/home/tdotv/MyCode/PC_Designer/Client/wwwroot/js/site.js",
+      "PackagePath": "staticwebassets/js/site.js"
     },
     {
       "Id": "/home/tdotv/MyCode/PC_Designer/Client/wwwroot/manifest.json",

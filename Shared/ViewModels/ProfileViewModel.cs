@@ -28,7 +28,7 @@ namespace PC_Designer.ViewModels
         public async Task UpdateProfile()
         {
             User user = this;
-            await _httpClient.PutAsJsonAsync("user/updateprofile/" + this.UserId, user);
+            await _httpClient.PutAsJsonAsync("profile/updateprofile/" + this.UserId, user);
             Message = "Profile updated successfully";
         }
 
@@ -37,13 +37,13 @@ namespace PC_Designer.ViewModels
             User user = this;
             user.ProfilePictureData = imageBytes;
 
-            await _httpClient.PutAsJsonAsync("user/updateprofile/" + this.UserId, user);
+            await _httpClient.PutAsJsonAsync("profile/updateprofile/" + this.UserId, user);
             Message = "profile updated successfully";
         }
 
         public async Task GetProfile()
         {
-            User user = await _httpClient.GetFromJsonAsync<User>("user/getprofile/" + this.UserId);
+            User user = await _httpClient.GetFromJsonAsync<User>("profile/getprofile/" + this.UserId);
             if (user != null)
             {
                 LoadCurrentObject(user);
@@ -55,11 +55,22 @@ namespace PC_Designer.ViewModels
         {   
             try
             {
-                await _httpClient.GetFromJsonAsync<User>($"user/updatetheme?userId={this.UserId}&DarkTheme={this.DarkTheme.ToString()}");
-                await _httpClient.GetFromJsonAsync<User>($"user/updatenotifications?userId={this.UserId}&Notifications={this.Notifications.ToString()}");
+                await _httpClient.GetFromJsonAsync<User>($"profile/updatetheme?userId={this.UserId}&DarkTheme={this.DarkTheme.ToString()}");
+                await _httpClient.GetFromJsonAsync<User>($"profile/updatenotifications?userId={this.UserId}&Notifications={this.Notifications.ToString()}");
             }
             catch (HttpRequestException httpEx) { Message = $"HTTP Request Error: {httpEx.Message}"; }
             catch (Exception ex) { Message = $"Error: {ex.Message}"; }
+        }
+
+        public async Task UpdateTheme()
+        {
+            await _httpClient.GetFromJsonAsync<User>($"profile/updatetheme?userId={this.UserId}&DarkTheme={this.DarkTheme.ToString()}");
+        }
+
+        public async Task UpdateNotifications()
+        {
+            // User user = this;
+            // await _httpClient.PutAsJsonAsync($"profile/updatenotifications/{this.UserId}", user);
         }
 
         private void LoadCurrentObject(ProfileViewModel profileViewModel)

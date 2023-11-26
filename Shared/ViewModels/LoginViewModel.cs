@@ -1,12 +1,15 @@
 using System.Net.Http.Json;
 using PC_Designer.Shared;
 
+#nullable disable
+
 namespace PC_Designer.ViewModels
 {
     public class LoginViewModel : ILoginViewModel
     {
         public string EmailAddress { get; set; }
         public string Password { get; set; }
+        public bool RememberMe { get; set; }
 
         private readonly HttpClient _httpClient;
 
@@ -22,7 +25,7 @@ namespace PC_Designer.ViewModels
 
         public async Task LoginUser()
         {
-            await _httpClient.PostAsJsonAsync<User>("user/loginuser", this);
+            await _httpClient.PostAsJsonAsync<User>($"user/loginuser?isPersistent={this.RememberMe}", this);
         }
 
         public static implicit operator LoginViewModel(User user)

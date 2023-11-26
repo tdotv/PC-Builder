@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "KymnxgV96JX2Baztd85wJRMUoQhHmHRW6rD0LJU5sHs=",
+  "Hash": "iRp9vE8Kn9oY5CmQmyXcfvxHVVHkth9ZtEwSS+Ui46w=",
   "Source": "PC_Designer.Server",
   "BasePath": "_content/PC_Designer.Server",
   "Mode": "Default",
@@ -7866,6 +7866,23 @@
       "OriginalItemSpec": "wwwroot/service-worker.js"
     },
     {
+      "Identity": "/home/tdotv/MyCode/PC_Designer/Client/wwwroot/css/app-dark.css",
+      "SourceId": "PC_Designer.Client",
+      "SourceType": "Project",
+      "ContentRoot": "/home/tdotv/MyCode/PC_Designer/Client/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "css/app-dark.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/app-dark.css"
+    },
+    {
       "Identity": "/home/tdotv/MyCode/PC_Designer/Client/wwwroot/css/app.css",
       "SourceId": "PC_Designer.Client",
       "SourceType": "Project",
@@ -8136,6 +8153,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/index.html"
+    },
+    {
+      "Identity": "/home/tdotv/MyCode/PC_Designer/Client/wwwroot/js/site.js",
+      "SourceId": "PC_Designer.Client",
+      "SourceType": "Project",
+      "ContentRoot": "/home/tdotv/MyCode/PC_Designer/Client/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "js/site.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/site.js"
     },
     {
       "Identity": "/home/tdotv/MyCode/PC_Designer/Client/wwwroot/manifest.json",

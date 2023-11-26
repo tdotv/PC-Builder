@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PC_Designer.Shared;
 
@@ -5,6 +6,7 @@ namespace PC_Designer.Server.Controllers;
 
 [ApiController]
 [Route("api/sockets")]
+[Authorize]
 public class SocketController : ControllerBase
 {
     private readonly ISocketService _socketService;

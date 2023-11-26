@@ -1,7 +1,6 @@
 using PC_Designer.ViewModels;
 using Dapper;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using PC_Designer.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -35,6 +34,16 @@ builder.Services.AddHttpContextAccessor();
 DefaultTypeMap.MatchNamesWithUnderscores = true;
 
 var app = builder.Build();
+
+/*--- Logging to Database using Custom Logger Provider ---  + Need to add LogController for Dapper
+
+ILoggerFactory loggerFactory;
+loggerFactory.AddProvider(new ApplicationLoggerProvider());
+
+IApplicationBuilder applicationBuilder;
+var serviceProvider = applicationBuilder.ApplicationServices.CreateScope().ServiceProvider;
+
+---                                                 --- */
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
