@@ -1,3 +1,4 @@
+#nullable disable
 namespace PC_Designer.ViewModels
 {
     public class LogViewModel : ILogViewModel

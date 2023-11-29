@@ -1,10 +1,11 @@
-using PC_Designer.ViewModels;
 using Dapper;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
-
 
 #region CORS settings for API
 builder.Services.AddCors(options => 
@@ -16,16 +17,32 @@ builder.Services.AddCors(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddSignalR();
 
 builder.Services.AddAuthentication(options =>
     {
-        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    }).AddCookie(options => {options.LoginPath = "/user/notauthorized"; });
+        //options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    //.AddCookie(options => { options.LoginPath = "/user/notauthorized"; })
+    .AddJwtBearer(jwtBearerOptions =>
+    {
+        jwtBearerOptions.RequireHttpsMetadata = true;
+        jwtBearerOptions.SaveToken = true;
+        jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["JWTSettings:SecretKey"])),
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ClockSkew = TimeSpan.Zero
+        };
+});
 
-// Dependency Ijections
-builder.Services.AddScoped<ISocketService, ServerSocketService>();
 builder.Services.AddScoped<IDbService, DbService>();
-builder.Services.AddScoped<IProfileViewModel, ProfileViewModel>();
+// builder.Services.AddScoped<IProfileViewModel, ProfileViewModel>();
+// builder.Services.AddScoped<ISocketService, ServerSocketService>();
 
 builder.Services.AddHttpClient();
 builder.Services.AddHttpContextAccessor();

@@ -1,4 +1,9 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@using PC_Designer.Shared.Services
+@inject HttpClient _httpClient
+@inject NavigationManager _navigationManager
+@inject IAccessTokenService _accessTokenService
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">PC_Designer</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
@@ -31,16 +36,27 @@
                 <span class="oi oi-plus" aria-hidden="true"></span> About Us
             </NavLink>
         </div>
+        <div class="nav-item px-3">
+            <a class="nav-link" href="" @onclick="Logout">
+                <span class="oi oi-lock-locked" aria-hidden="true"></span> Logout
+            </a>
+        </div>
     </nav>
 </div>
 
 @code {
     private bool collapseNavMenu = true;
 
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : string.Empty;
 
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+
+    private async Task Logout()
+    {
+        await _accessTokenService.RemoveAccessTokenAsync("jwt_token");
+        _navigationManager.NavigateTo("/", true);
     }
 }

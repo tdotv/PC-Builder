@@ -7,12 +7,16 @@
   "linkerEnabled": false,
   "resources": {
     "assembly": {
+      "Blazored.LocalStorage.dll": "sha256-uY2ERHMILJtHL7xbvGDKMMPCgWikvrFjzBjfQHD95B4=",
+      "Blazored.Toast.dll": "sha256-SnlpX7tqR4Or48+LUVR7CMv3xLhjy1JBnmDfQCb2GwM=",
+      "Bunit.Core.dll": "sha256-89qPI+Dyhdj1DYmp1qfPTe7ptDPADv\/6AhJUdNv7fRY=",
       "Microsoft.AspNetCore.Authorization.dll": "sha256-rtkwhICTsYE9Dtvit4qmKukHxhcBii8IGbm5icnCWbM=",
       "Microsoft.AspNetCore.Components.dll": "sha256-Qv8HUc4bc7hrinChcgqA5WvNTVXrGrA7KqK+y9K08KM=",
       "Microsoft.AspNetCore.Components.Authorization.dll": "sha256-JE3kRVO7ej\/zCUUshzEyxzoY+yl8N\/AdGAX9tVpcNGA=",
       "Microsoft.AspNetCore.Components.Forms.dll": "sha256-OBwQa9gr6aP+n\/xh7tnGjONUh7W1qym12VKXdPnpyUI=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-Gx0g1syHcH5YyRh+rs88++NwatlG0Ou51bQM\/+Frqj8=",
       "Microsoft.AspNetCore.Components.WebAssembly.dll": "sha256-RIHL\/6PwsBDL0lyHHDfhPIxQbGmaVrZmZtBW08GfqHQ=",
+      "Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll": "sha256-o7lG9z1KhOW24JqJqCUfzoILLj\/R5Xd3Ocb1ww1b8Tw=",
       "Microsoft.AspNetCore.Metadata.dll": "sha256-icfbQAYjnoXHBPRVr2IaSDv+w204xZlmwpb37PW5028=",
       "Microsoft.Extensions.Configuration.dll": "sha256-PqQvp77oZ4+uuy2ElXk8AU9I6RfZSf18UGTrd4rulOo=",
       "Microsoft.Extensions.Configuration.Abstractions.dll": "sha256-CnS3b9EMFQmETBUVEgtcron4DBsfFdcVt3zfCP6Uflg=",
@@ -24,13 +28,13 @@
       "Microsoft.Extensions.FileProviders.Abstractions.dll": "sha256-Zt6OY6gg\/1Tzt9oFOQBkezPvUVkFK4dyM6Pfk+MTUvg=",
       "Microsoft.Extensions.FileProviders.Physical.dll": "sha256-9xkIbIienaRj9Td2MyWYzL9JmVx6CKbGCPrvJ1Pxfn8=",
       "Microsoft.Extensions.FileSystemGlobbing.dll": "sha256-Gm0yiS5fySh2nZXdCRKZIbASK8sSukwjogLc+a9EBZY=",
+      "Microsoft.Extensions.Http.dll": "sha256-yUMvQwAOesiz+yHxElu\/ObK7gQIqcSR7vktOISpntaA=",
       "Microsoft.Extensions.Logging.dll": "sha256-WMsuY8rhtg+vvssGFSR7ZLKhqYPAzOi538IXMoiJ6bI=",
       "Microsoft.Extensions.Logging.Abstractions.dll": "sha256-7mzUlhcvGxpAVO4h\/Tka7P\/8IXF9ZsHkGt0fp5aufkU=",
       "Microsoft.Extensions.Options.dll": "sha256-gcHJrSv1wTqvF9SyWTEKcbiShn4mkgfnm9+tRQr4OqY=",
       "Microsoft.Extensions.Primitives.dll": "sha256-q4ruoDSCjV\/QJY9ZkzV6uxvEvZUVrDbyUjU3SSh5SlE=",
       "Microsoft.JSInterop.dll": "sha256-4w31cVs8ZqmiTjPhXLdOP9nJt6goHkYVV9L8Nz+27\/g=",
       "Microsoft.JSInterop.WebAssembly.dll": "sha256-4xrroXQy8wvhJmgbErz8Uld\/3YoAZEjglOS6GfJz+JQ=",
-      "Radzen.Blazor.dll": "sha256-pC3kEFoOoljiGCIPq+HM4S17WZFi6NHAKN9Qz5Sj2ro=",
       "System.Data.SqlClient.dll": "sha256-N9QEun1JrCD4FtOJ\/07ozAAQOd133uOsi2tS+ohSzaM=",
       "System.IO.Pipelines.dll": "sha256-P\/MqD0fCBd5bgTM16JC1QC\/Zz7s+CwViyzmDFkBG4\/c=",
       "System.Linq.Dynamic.Core.dll": "sha256-BBgVLrtvFKoZ6SbCxHRdzr9oeUHvnuQLfM8gRAFgDQc=",
@@ -202,15 +206,17 @@
       "mscorlib.dll": "sha256-YcsJInaT\/kw3Vrm+SESegPxvT\/Lr9RE6rE\/KnxWIIc0=",
       "netstandard.dll": "sha256-TztlSRjADgiEABbiAMdWZpHrUVd8wnRtQRAvlwmRP\/4=",
       "System.Private.CoreLib.dll": "sha256-BAhrZ8Zg3cJKQipxdzqQo+9jtPkOkRx1ou3oIhDohtk=",
-      "PC_Designer.Shared.dll": "sha256-gEAPFXEpQM4ysi36WpwnaZu4SKPP3hZr3gIpzc\/ybQE=",
-      "PC_Designer.Client.dll": "sha256-3b3zxe3hd2uRl1T1AN6baUxJyGpRgyzKwEx46+LdXLQ="
+      "PC_Designer.Shared.dll": "sha256-h30RJ9lEwR9zIdxSL8AJg3TKfzLBeSyIGGk7waVL3xs=",
+      "PC_Designer.Client.dll": "sha256-87OPUE318CdNtd1xVHj4WHmB2XBT1fjb683CZP2qZ5U="
     },
     "extensions": null,
-    "lazyAssembly": null,
+    "lazyAssembly": {
+      "Radzen.Blazor.dll": "sha256-pC3kEFoOoljiGCIPq+HM4S17WZFi6NHAKN9Qz5Sj2ro="
+    },
     "libraryInitializers": null,
     "pdb": {
-      "PC_Designer.Shared.pdb": "sha256-ET\/4KyBQdmTMRQJi1ulWP5N2krWjqjL\/ru3Q4y7ZH+g=",
-      "PC_Designer.Client.pdb": "sha256-RX74oqsjnXZ20HsuUvcN3PQ1Q9f2KCxPV0WdwfAnX\/k="
+      "PC_Designer.Shared.pdb": "sha256-fB9+ANrKdw24kpDNpj0POpWzOA32IR4KHymBTLj+MoM=",
+      "PC_Designer.Client.pdb": "sha256-at29OorUByAgvcJibLT6nvbUzXpveZXWkZyQtLOwjYk="
     },
     "runtime": {
       "dotnet.7.0.14.khq7qvdxwc.js": "sha256-YWGUknGRzP\/fgO6YjvCJKPVQNZAPEd6ll+rHfQEIW+I=",

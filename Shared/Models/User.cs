@@ -15,7 +15,7 @@ namespace PC_Designer.Shared
         [Key]
         public long UserId { get; set; }
 
-        [Required(ErrorMessage = "Password can't be null")]
+        [Required(ErrorMessage = "Email can't be null")]
         public string EmailAddress { get; set; }
 
         // [Required(ErrorMessage = "Password can't be null")]

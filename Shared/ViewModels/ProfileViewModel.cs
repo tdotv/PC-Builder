@@ -11,7 +11,6 @@ namespace PC_Designer.ViewModels
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
-        public string Message { get; set; }
         public string AboutMe { get; set; }
         public byte[] ProfilePictureData { get; set; }
         public bool Notifications { get; set; }
@@ -29,7 +28,6 @@ namespace PC_Designer.ViewModels
         {
             User user = this;
             await _httpClient.PutAsJsonAsync("profile/updateprofile/" + this.UserId, user);
-            Message = "Profile updated successfully";
         }
 
         public async Task UpdateProfileWithImage(byte[] imageBytes)
@@ -38,7 +36,6 @@ namespace PC_Designer.ViewModels
             user.ProfilePictureData = imageBytes;
 
             await _httpClient.PutAsJsonAsync("profile/updateprofile/" + this.UserId, user);
-            Message = "profile updated successfully";
         }
 
         public async Task GetProfile()
@@ -47,7 +44,6 @@ namespace PC_Designer.ViewModels
             if (user != null)
             {
                 LoadCurrentObject(user);
-                Message = "Profile loaded successfully";
             }
         }
 
@@ -58,8 +54,8 @@ namespace PC_Designer.ViewModels
                 await _httpClient.GetFromJsonAsync<User>($"profile/updatetheme?userId={this.UserId}&DarkTheme={this.DarkTheme.ToString()}");
                 await _httpClient.GetFromJsonAsync<User>($"profile/updatenotifications?userId={this.UserId}&Notifications={this.Notifications.ToString()}");
             }
-            catch (HttpRequestException httpEx) { Message = $"HTTP Request Error: {httpEx.Message}"; }
-            catch (Exception ex) { Message = $"Error: {ex.Message}"; }
+            catch (HttpRequestException httpEx) { Console.WriteLine($"HTTP Request Error: {httpEx.Message}"); }
+            catch (Exception ex) { Console.WriteLine($"Error: {ex.Message}"); }
         }
 
         public async Task UpdateTheme()

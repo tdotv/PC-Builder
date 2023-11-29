@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "A9ml913wbnUUvv5VHPuc+JV3HeGfpOVHBQbrK/jNGnfv9m8p4mID6odN2M4aW9c6Gg6KNsN+S2Lgj3jhKqFO4g==",
+  "dgSpecHash": "NaGGvnP/YrAak56//L9b0NNSan+2BQFM6JoWegQwixORNQoqj6grnGS7oAJijThHH72MmmT6Hudwi5SzLUAtKg==",
   "success": true,
   "projectFilePath": "/home/tdotv/MyCode/PC_Designer/Shared/PC_Designer.Shared.csproj",
   "expectedPackageFiles": [
+    "/home/tdotv/.nuget/packages/microsoft.jsinterop/5.0.0/microsoft.jsinterop.5.0.0.nupkg.sha512",
     "/home/tdotv/.nuget/packages/microsoft.netcore.platforms/3.1.0/microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "/home/tdotv/.nuget/packages/microsoft.win32.registry/4.7.0/microsoft.win32.registry.4.7.0.nupkg.sha512",
     "/home/tdotv/.nuget/packages/runtime.native.system.data.sqlclient.sni/4.7.0/runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",

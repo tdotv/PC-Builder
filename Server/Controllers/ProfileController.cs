@@ -42,7 +42,7 @@ namespace PC_Designer.Server.Controllers
                     userToUpdate);
             }
 
-            return user;
+            return await Task.FromResult(user);
         }
 
         [HttpGet("updatetheme")]

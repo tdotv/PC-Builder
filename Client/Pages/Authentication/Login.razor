@@ -1,8 +1,16 @@
 @page "/"
+@page "/{RegisterRedirect:bool}"
+@using Microsoft.Extensions.Options
 @using PC_Designer.ViewModels
+@using PC_Designer.Shared.Services
 @using PC_Designer.Shared
+@using PC_Designer.Client.Handlers
 @inject ILoginViewModel _loginViewModel
 @inject NavigationManager _navigationManager
+@inject ILocalStorageService _localStorageService
+@inject IToastService _toastService
+@inject IAccessTokenService _accessTokenService
+@inject AuthenticationStateProvider _authenticationStateProvider
 
 <body>
     <div class="content">
@@ -35,7 +43,8 @@
                                     </label>
                                     <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>
                                 </div>
-                                <button class="btn btn-primary" @onclick="LoginUser">Login</button>
+                                <button class="btn btn-primary" @onclick="AuthenticateJWT">Login</button>
+                                <button class="btn btn-primary" href="/createaccount">Create Account</button>
                                 <span class="d-block text-left my-4 text-muted">&mdash; or login with &mdash;</span>
                                 @* <div class="social-login">
                                     <a href="#" class="facebook">
@@ -51,8 +60,8 @@
     </div>
 </body>
 
-@code {
-    [CascadingParameter]
+  @* @code {
+   [CascadingParameter]
     public Task<AuthenticationState> authenticationState { get; set; }
     
     protected override async Task OnInitializedAsync()
@@ -61,18 +70,72 @@
         var user = authState.User;
         if(user.Identity.IsAuthenticated)
         {
-            NavigateToProfile();
+            _navigationManager.NavigateTo("/profile",true);
         }
     }
 
-    public async Task LoginUser()
+    public async Task AuthenticateJWT()
     {
-        await _loginViewModel.LoginUser();
-        NavigateToProfile();
+        AuthenticationResponse authenticationResponse = await _loginViewModel.AuthenticateJWT();
+        if(authenticationResponse.Token != string.Empty)
+        {
+            await _localStorageService.SetItemAsync("jwt_token",authenticationResponse.Token);
+            _navigationManager.NavigateTo("/profile",true);
+        }
+        else
+        {
+            _toastService.ShowError("Invalid username or password");
+        }
+    } 
+}*@
+
+@code {
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthenticationState { get; set; } = null!;
+
+    [Parameter]
+    public bool RegisterRedirect { get; set; }
+
+    private bool IsLoading { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        //Initializing the login details for John Smith
+        if(!RegisterRedirect)
+        {
+            _loginViewModel.EmailAddress = "test_jwt";
+            _loginViewModel.Password = "jwt";
+        }
+
+        var authState = await AuthenticationState;
+
+        if (authState.User.Identity is { IsAuthenticated: true })
+        {
+            _navigationManager.NavigateTo("/profile");
+        }
     }
 
-    public void NavigateToProfile()
+    private async Task OnKeyPress(KeyboardEventArgs args)
     {
-        _navigationManager.NavigateTo("/profile",true);
+        if (args.Key == "Enter")
+            await AuthenticateJWT();
+    }
+
+    private async Task AuthenticateJWT()
+    {
+        IsLoading = true;
+        AuthenticationResponse authenticationResponse = await _loginViewModel.AuthenticateJWT();
+        if (authenticationResponse.Token != string.Empty)
+        {
+            await _accessTokenService.SetAccessTokenAsync("jwt_token", authenticationResponse.Token);
+            await ((CustomAuthenticationStateProvider)_authenticationStateProvider).MarkUserAsAuthenticated();
+            
+            _navigationManager.NavigateTo("/profile", true);
+        }
+        else
+        {
+            _toastService.ShowError("Invalid username or password");
+        }
+        IsLoading = false;
     }
 }

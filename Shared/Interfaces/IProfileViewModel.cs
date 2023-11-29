@@ -9,7 +9,6 @@ namespace PC_Designer.ViewModels
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
-        public string Message { get; set; }
         public string AboutMe { get; set; }
         public byte[] ProfilePictureData { get; set; }
         public bool Notifications { get; set; }
