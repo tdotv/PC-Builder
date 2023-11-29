@@ -22,7 +22,6 @@ namespace PC_Designer.Client.Handlers
         {
             User currentUser = await GetUserByJWTAsync(); //_httpClient.GetFromJsonAsync<User>("user/getcurrentuser");
 
-            // User currentUser = await _httpClient.GetFromJsonAsync<User>("user/getcurrentuser")
             if (currentUser != null && currentUser.EmailAddress != null)
             {
                 //create a claims

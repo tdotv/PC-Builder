@@ -7,12 +7,12 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
-#region CORS settings for API
-builder.Services.AddCors(options => 
-{
-    options.AddPolicy(name: "_myAllowSpecificOrigins", policy => { policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod(); });
-});
-#endregion
+// #region CORS settings for API
+// builder.Services.AddCors(options => 
+// {
+//     options.AddPolicy(name: "_myAllowSpecificOrigins", policy => { policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod(); });
+// });
+// #endregion
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

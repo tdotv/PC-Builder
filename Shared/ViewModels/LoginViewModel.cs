@@ -14,11 +14,13 @@ namespace PC_Designer.ViewModels
         public string Password { get; set; }
         public bool RememberMe { get; set; }
 
-        private HttpClient _httpClient;
+        private readonly HttpClient _httpClient;
+
         public LoginViewModel()
         {
 
         }
+
         public LoginViewModel(HttpClient httpClient)
         {
             _httpClient = httpClient;
@@ -32,16 +34,19 @@ namespace PC_Designer.ViewModels
         public async Task<AuthenticationResponse> AuthenticateJWT()
         {
             //creating authentication request
-            AuthenticationRequest authenticationRequest = new AuthenticationRequest();
-            authenticationRequest.EmailAddress = this.EmailAddress;
-            authenticationRequest.Password = this.Password;
-            
+            AuthenticationRequest authenticationRequest = new()
+            {
+                EmailAddress = this.EmailAddress,
+                Password = this.Password
+            };
+
             //authenticating the request
-            var httpMessageReponse = await _httpClient.PostAsJsonAsync<AuthenticationRequest>($"user/authenticatejwt", authenticationRequest);
+            var httpMessageReponse = await _httpClient.PostAsJsonAsync($"user/authenticatejwt", authenticationRequest);
             
             //sending the token to the client to store
             return await httpMessageReponse.Content.ReadFromJsonAsync<AuthenticationResponse>();
         }
+        
         public async Task<string> GetFacebookAppIDAsync()
         {
             return await _httpClient.GetStringAsync("user/getfacebookappid");
