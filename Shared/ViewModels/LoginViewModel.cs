@@ -1,26 +1,24 @@
-using PC_Designer.Shared;
-using System.ComponentModel.DataAnnotations;
-using System.Net.Http.Headers;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text;
+using System.Threading.Tasks;
+using PC_Designer.Shared;
 
 namespace PC_Designer.ViewModels
 {
     public class LoginViewModel : ILoginViewModel
     {
-        [Required]
-        [EmailAddress]
         public string EmailAddress { get; set; }
-        [Required]
         public string Password { get; set; }
         public bool RememberMe { get; set; }
 
-        private readonly HttpClient _httpClient;
-
+        private HttpClient _httpClient;
         public LoginViewModel()
         {
 
         }
-
         public LoginViewModel(HttpClient httpClient)
         {
             _httpClient = httpClient;
@@ -34,48 +32,19 @@ namespace PC_Designer.ViewModels
         public async Task<AuthenticationResponse> AuthenticateJWT()
         {
             //creating authentication request
-            var authenticationRequest = new AuthenticationRequest
-            {
-                EmailAddress = EmailAddress,
-                Password = Password,
-            };
+            AuthenticationRequest authenticationRequest = new AuthenticationRequest();
+            authenticationRequest.EmailAddress = this.EmailAddress;
+            authenticationRequest.Password = this.Password;
             
             //authenticating the request
-            var httpMessageReponse = await _httpClient.PostAsJsonAsync($"user/authenticatejwt", authenticationRequest);
+            var httpMessageReponse = await _httpClient.PostAsJsonAsync<AuthenticationRequest>($"user/authenticatejwt", authenticationRequest);
             
             //sending the token to the client to store
             return await httpMessageReponse.Content.ReadFromJsonAsync<AuthenticationResponse>();
         }
-
-         public async Task<User> GetUserByJWTAsync(string jwtToken)
+        public async Task<string> GetFacebookAppIDAsync()
         {
-            try
-            {
-                //preparing the http request
-                using var requestMessage = new HttpRequestMessage(HttpMethod.Post, "user/getuserbyjwt")
-                {
-                    Content = new StringContent(jwtToken)
-                    {
-                        Headers =
-                        {
-                            ContentType = new MediaTypeHeaderValue("application/json")
-                        }
-                    }
-                };
-
-                //making the http request
-                var response = await _httpClient.SendAsync(requestMessage);
-
-                //returning the user if found
-                var returnedUser = await response.Content.ReadFromJsonAsync<User>();
-                if (returnedUser != null) return await Task.FromResult(returnedUser);
-                else return null;
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.GetType());
-                return null;
-            }            
+            return await _httpClient.GetStringAsync("user/getfacebookappid");
         }
 
         public static implicit operator LoginViewModel(User user)

@@ -20,11 +20,6 @@ namespace PC_Designer.Client.Handlers
             //adding the token in authorization header
             if (jwtToken != null)
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
-
-            if (request.RequestUri.AbsoluteUri.Contains("registeruser"))
-            {
-                return new HttpResponseMessage(HttpStatusCode.OK);
-            }
             
             //sending the request
             return await base.SendAsync(request, cancellationToken);

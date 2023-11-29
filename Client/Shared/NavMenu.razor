@@ -56,7 +56,8 @@
 
     private async Task Logout()
     {
-        await _accessTokenService.RemoveAccessTokenAsync("jwt_token");
+        @* await _accessTokenService.RemoveAccessTokenAsync("jwt_token"); *@
+        await _httpClient.GetAsync("user/logoutuser");
         _navigationManager.NavigateTo("/", true);
     }
 }

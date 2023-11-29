@@ -206,8 +206,8 @@
       "mscorlib.dll": "sha256-YcsJInaT\/kw3Vrm+SESegPxvT\/Lr9RE6rE\/KnxWIIc0=",
       "netstandard.dll": "sha256-TztlSRjADgiEABbiAMdWZpHrUVd8wnRtQRAvlwmRP\/4=",
       "System.Private.CoreLib.dll": "sha256-BAhrZ8Zg3cJKQipxdzqQo+9jtPkOkRx1ou3oIhDohtk=",
-      "PC_Designer.Shared.dll": "sha256-h30RJ9lEwR9zIdxSL8AJg3TKfzLBeSyIGGk7waVL3xs=",
-      "PC_Designer.Client.dll": "sha256-87OPUE318CdNtd1xVHj4WHmB2XBT1fjb683CZP2qZ5U="
+      "PC_Designer.Shared.dll": "sha256-sMGfN1ipWWwtLX3bEonXco64d31LMegeCVT\/AtvsXck=",
+      "PC_Designer.Client.dll": "sha256-d5PyBt6UOViyPvOcEwKJMsH+N4ZYMGXq5t8tBGUjg5w="
     },
     "extensions": null,
     "lazyAssembly": {
@@ -215,8 +215,8 @@
     },
     "libraryInitializers": null,
     "pdb": {
-      "PC_Designer.Shared.pdb": "sha256-fB9+ANrKdw24kpDNpj0POpWzOA32IR4KHymBTLj+MoM=",
-      "PC_Designer.Client.pdb": "sha256-at29OorUByAgvcJibLT6nvbUzXpveZXWkZyQtLOwjYk="
+      "PC_Designer.Shared.pdb": "sha256-zN5VAEYWZz\/P0JNqYF9GmBpAax4r4rGt9UkrrpGOXvk=",
+      "PC_Designer.Client.pdb": "sha256-91C3hAFBQ82OnkOnEG1PtVwbzba+SpGcIv+fZ8xKXws="
     },
     "runtime": {
       "dotnet.7.0.14.khq7qvdxwc.js": "sha256-YWGUknGRzP\/fgO6YjvCJKPVQNZAPEd6ll+rHfQEIW+I=",
