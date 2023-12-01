@@ -1,10 +1,14 @@
 ﻿@using PC_Designer.Shared
 @using Blazored.Toast.Configuration
+@using PC_Designer.Shared.Services
+@using PC_Designer.ViewModels
 @inherits LayoutComponentBase
 @inject NavigationManager _navigationManager
 @inject HttpClient _httpClient
 @inject IJSRuntime _jsRuntime
 @inject ILocalStorageService _localStorageService
+@inject ILoginViewModel _loginViewModel
+@inject IAccessTokenService _accessTokenService
 
 <div class="page">
 
@@ -40,30 +44,30 @@
 
 @code{
 
-    protected override async Task OnInitializedAsync()
+     protected async override Task OnAfterRenderAsync(bool firstRender)
     {
-        //getting the current authenticated user for the app
-        User currentUser = await _httpClient.GetFromJsonAsync<User>("user/getcurrentuser");
-        if(currentUser != null)
-        {
-            //setting the themeName parameter for JS function
-            var themeName = currentUser.DarkTheme == 1 ? "dark" : "light";
-            //calling the JS function
-            @* var module = await _jsRuntime.InvokeAsync<IJSObjectReference>("import","./js/site.js");
-            await _jsRuntime.InvokeVoidAsync("setTheme", themeName); *@
-        }
-        await base.OnInitializedAsync();
+        @* if(firstRender)
+        { *@
+            var jwtToken = await _accessTokenService.GetAccessTokenAsync("jwt_token");
+            if (jwtToken == null) return;
+
+            jwtToken = $@"""{jwtToken}""";
+            User currentUser = await _loginViewModel.GetUserByJWTAsync(jwtToken);
+
+            @* if (currentUser != null)
+            {
+                //setting the themeName parameter for JS function
+                var themeName = currentUser.DarkTheme == 1 ? "dark" : "light";
+                //calling the JS function
+                var module = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/BlazingChat.Components/js/site.js");
+                await module.InvokeVoidAsync("setTheme", themeName);
+            } *@
+        @* } *@
     }
 
     private async Task LogoutUser()
     {
-        //await _httpClient.GetAsync("user/logoutuser");
-        await _localStorageService.RemoveItemAsync("jwt_token");
-        _navigationManager.NavigateTo("/", true);
-    }
-
-    private void LoginUser()
-    {
+        await _accessTokenService.RemoveAccessTokenAsync("jwt_token");
         _navigationManager.NavigateTo("/", true);
     }
 

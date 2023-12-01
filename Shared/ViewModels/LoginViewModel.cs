@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
 using PC_Designer.Shared;
+using System.Net.Http.Headers;
+using System.Text.Json;
 
 namespace PC_Designer.ViewModels
 {
@@ -28,7 +25,7 @@ namespace PC_Designer.ViewModels
 
         public async Task LoginUser()
         {
-            await _httpClient.PostAsJsonAsync<User>($"user/loginuser?isPersistent={this.RememberMe}", this);
+            await _httpClient.PostAsJsonAsync<User>($"user/loginuser?isPersistent={RememberMe}", this);
         }
 
         public async Task<AuthenticationResponse> AuthenticateJWT()
@@ -46,10 +43,42 @@ namespace PC_Designer.ViewModels
             //sending the token to the client to store
             return await httpMessageReponse.Content.ReadFromJsonAsync<AuthenticationResponse>();
         }
-        
-        public async Task<string> GetFacebookAppIDAsync()
+
+        public async Task<User> GetUserByJWTAsync(string jwtToken)
         {
-            return await _httpClient.GetStringAsync("user/getfacebookappid");
+            try
+            {
+                var jsonToken = JsonSerializer.Serialize(jwtToken);
+
+                //preparing the http request
+                using var requestMessage = new HttpRequestMessage(HttpMethod.Post, "user/getuserbyjwt")
+                {
+                    Content = new StringContent(jwtToken)
+                    {
+                        
+                        Headers =
+                        {
+                            ContentType = new MediaTypeHeaderValue("application/json")
+                        }
+                    }
+                };
+
+                // var requestMessage = new HttpRequestMessage(HttpMethod.Post, "user/getuserbyjwt");
+                // requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
+
+                //making the http request
+                var response = await _httpClient.SendAsync(requestMessage);
+
+                //returning the user if found
+                var returnedUser = await response.Content.ReadFromJsonAsync<User>();
+                if (returnedUser != null) return await Task.FromResult(returnedUser);
+                else return null;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.GetType());
+                return null;
+            }            
         }
 
         public static implicit operator LoginViewModel(User user)

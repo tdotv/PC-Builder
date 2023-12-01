@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authentication;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace PC_Designer.Server.Controllers
 {
@@ -23,38 +22,6 @@ namespace PC_Designer.Server.Controllers
             this.dbService = dbService;
             this.configuration = configuration;
         }
-
-        // [HttpPost("loginuser")]
-        // public async Task<ActionResult<User>> LoginUser(User user, bool isPersistent)
-        // {
-        //     try
-        //     {
-        //         user.Password = Utility.Encrypt(user.Password);
-        //         string query = "SELECT TOP 1 * FROM dbo.Users WHERE EmailAddress=@EmailAddress AND Password=@Password";
-        //         var parameters = new { EmailAddress = user.EmailAddress, Password = user.Password };
-        //         User loggedInUser = await dbService.GetAsync<User>(query, parameters);
-
-        //         if (loggedInUser != null)
-        //         {
-        //             //create a claim
-        //             var claimEmail = new Claim(ClaimTypes.Email, loggedInUser.EmailAddress);
-        //             var claimNameIdentifier = new Claim(ClaimTypes.NameIdentifier, loggedInUser.UserId.ToString());
-        //             //create claimsIdentity
-        //             var claimsIdentity = new ClaimsIdentity(new[] { claimEmail, claimNameIdentifier }, "serverAuth");
-        //             //create claimsPrincipal
-        //             var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-        //             //Sign In User
-        //             await HttpContext.SignInAsync(claimsPrincipal, GetAuthenticationProperties(isPersistent));
-        //         }
-
-        //         return await Task.FromResult(loggedInUser);
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         Console.WriteLine("Exception: " + ex.Message);
-        //         return null;
-        //     }
-        // }
 
         [HttpGet("getcurrentuser")]
         public async Task<ActionResult<User>> GetCurrentUser()
@@ -89,7 +56,7 @@ namespace PC_Designer.Server.Controllers
         [HttpPost("registeruser")]
         public async Task<ActionResult> RegisterUser(User user)
         {
-            //  In this method you should only create a user record and not authenticate the user
+            //  In this method create a user record and not authenticate the user
 
             var emailAddressExists = await dbService.GetAsync<User>("SELECT TOP 1 * FROM dbo.Users WHERE EmailAddress=@EmailAddress", 
                 new { EmailAddress = user.EmailAddress });
@@ -103,13 +70,6 @@ namespace PC_Designer.Server.Controllers
             }
             return Ok();
         }
-
-        // [HttpGet("logoutuser")]
-        // public async Task<ActionResult<String>> LogOutUser()
-        // {
-        //     await HttpContext.SignOutAsync();
-        //     return "Success";
-        // }
 
         // [HttpPost("vklogin")]
         // public async Task<ActionResult<VkUserViewModel>> VkLogin(string accessToken, int vkUserId)
@@ -141,7 +101,7 @@ namespace PC_Designer.Server.Controllers
             return Unauthorized();
         }
 
-        //Migrating to JWT Authorization...
+        //  JWT Authorization
         private string GenerateJwtToken(User user)
         {
             //getting the secret key
@@ -206,13 +166,14 @@ namespace PC_Designer.Server.Controllers
                     ValidateAudience = false
                 };
                 var tokenHandler = new JwtSecurityTokenHandler();
-                SecurityToken securityToken;
-        
+
                 //validating the token
-                var principle = tokenHandler.ValidateToken(jwtToken, tokenValidationParameters, out securityToken);
+                var principle = tokenHandler.ValidateToken(jwtToken, tokenValidationParameters, out SecurityToken securityToken);
                 var jwtSecurityToken = (JwtSecurityToken)securityToken;
-        
-                if (jwtSecurityToken != null && jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
+
+                if (jwtSecurityToken != null
+                    && jwtSecurityToken.ValidTo > DateTime.Now
+                    && jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
                 {
                     //returning the user if found
                     var userId = principle.FindFirst(ClaimTypes.NameIdentifier)?.Value;

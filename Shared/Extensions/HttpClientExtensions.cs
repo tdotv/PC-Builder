@@ -15,6 +15,7 @@ namespace PC_Designer.Shared.Extensions
             string url,
             string token)
         {
+
             var request = new HttpRequestMessage(HttpMethod.Get, url);
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
