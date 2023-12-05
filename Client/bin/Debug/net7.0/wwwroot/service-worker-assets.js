@@ -1,8 +1,12 @@
 ﻿self.assetsManifest = {
   "assets": [
     {
-      "hash": "sha256-xZIjLJe98FX2G7xBDEcmxG6O0X7lF69N7Yxmn5vMEBI=",
+      "hash": "sha256-SLWl9cDKBLTzwoaMNdOoQf7Q3iXD+9wuXRyCh3X9qHA=",
       "url": "css\/app-dark.css"
+    },
+    {
+      "hash": "sha256-HML3ziayW9tgTdpOfNsNMHFe\/HdDMvV5msrK8p9ch3o=",
+      "url": "css\/app-light.css"
     },
     {
       "hash": "sha256-10KEeWxsgry5D9LUZc0K86lpIg9RcWdyyBB5sXq6Ypk=",
@@ -65,11 +69,11 @@
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-4W3OauqCKvBMKI5bANd42ujf9S6KcWg\/oPvj5PTQa\/s=",
+      "hash": "sha256-HuvrBfK5bkW9ix\/VlN2k1sAORWqAww6WFt83XkXDcMg=",
       "url": "index.html"
     },
     {
-      "hash": "sha256-AEkfbI42zwFweB9udYowPttt2ReonwqsByYv6gDcdTc=",
+      "hash": "sha256-KzwWg4IYkRbUwxIjY\/2gaKttQbkBP2UhVobpUHkfK+o=",
       "url": "js\/site.js"
     },
     {
@@ -909,19 +913,19 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-4zBdkV8hVzuKPYq7c8ycmNjRhY\/i360WQ28woVUqz2U=",
+      "hash": "sha256-B5RMBRerBXz7XGt+Jv1mnebReYGyGDyL8jp\/Bg1wvAE=",
       "url": "_framework\/PC_Designer.Shared.dll"
     },
     {
-      "hash": "sha256-RN\/UGI4Fq40THZGzAZTF\/wKmKVtkaAU10Lf01+6JWFU=",
+      "hash": "sha256-NHdwJJwHn\/ZbLugYziyzk1DodoNv1VtVs6Na29PzQyE=",
       "url": "_framework\/PC_Designer.Shared.pdb"
     },
     {
-      "hash": "sha256-P8U27KHGuMn1FjxO4OeVq8GpFuwsdvOlHFBfVDKQEZU=",
+      "hash": "sha256-pVqDx0gdIoKNzQ5vfnAzIt9cBbtiLY4MQpMqGLbo+MI=",
       "url": "_framework\/PC_Designer.Client.dll"
     },
     {
-      "hash": "sha256-WJRIsbAtm8cZUOTNuCVMtkPul6zqHD+lJb08bVX4RQE=",
+      "hash": "sha256-ru01fJvK2iBZL1bVCtUHXgdKh2cctaZfdw+EUMV5Tk0=",
       "url": "_framework\/PC_Designer.Client.pdb"
     },
     {
@@ -929,7 +933,7 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-642ers\/CuRE+oMK3Y4Zr8E7P8Fu8l+zY21WOzfpUTFE=",
+      "hash": "sha256-Hd8P5Y1r\/N6O2o7LMfhh4w3SbGDJzZzyzPT0k7s3ClE=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -1117,5 +1121,5 @@
       "url": "_content\/Blazored.Toast\/blazored-toast.min.css"
     }
   ],
-  "version": "P\/DJFbrS"
+  "version": "OlrUT1Yt"
 };

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "VV/G/W6/72CcENF/i8RpMem2VO9rvRX51pHxTbNl988=",
+  "Hash": "BWxGyrHnSyZPIDTu06ylM/9e8HzlbhL/3FjMqmO/Nzk=",
   "Source": "PC_Designer.Server",
   "BasePath": "_content/PC_Designer.Server",
   "Mode": "Default",
@@ -8102,6 +8102,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/app-dark.css"
+    },
+    {
+      "Identity": "/home/tdotv/MyCode/PC_Designer/Client/wwwroot/css/app-light.css",
+      "SourceId": "PC_Designer.Client",
+      "SourceType": "Project",
+      "ContentRoot": "/home/tdotv/MyCode/PC_Designer/Client/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "css/app-light.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/app-light.css"
     },
     {
       "Identity": "/home/tdotv/MyCode/PC_Designer/Client/wwwroot/css/app.css",

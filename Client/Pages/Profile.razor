@@ -119,29 +119,38 @@ else
 
     [CascadingParameter]
     public Task<AuthenticationState> authenticationState { get; set; } = null!;
+    
+    [CascadingParameter]
+    public Error Error { get; set; }
+    public bool IsUserAuthorized { get; set; } = false;
+
 
     protected override async Task OnInitializedAsync()
     {
         var authState = await authenticationState;
         var user = authState.User;
-
+        
         if(user.Identity is { IsAuthenticated: true })
         {
             var claim = user.FindFirst(c => c.Type == ClaimTypes.NameIdentifier);
             _profileViewModel.UserId = Convert.ToInt64(claim?.Value);
+            IsUserAuthorized = user.IsInRole("admin") || user.IsInRole("general");
             try
             {
                 await _profileViewModel.GetProfile();
             }
-            catch (HttpRequestException ex) when (ex.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            catch (System.Net.Http.HttpRequestException ex)
             {
-                _navigationManager.NavigateTo("/", true);
+                if(ex.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                {
+                    _navigationManager.NavigateTo("/", true);
+                }
             }
         }
         else
         {
             _navigationManager.NavigateTo("/");
-        }        
+        }     
     }
 
     private async Task OnInputFileChanged(InputFileChangeEventArgs inputFileChangeEvent)

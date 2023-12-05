@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using PC_Designer.Shared.Services;
 using System.Threading.Tasks;
 
+#nullable disable
+
 namespace PC_Designer.ViewModels
 {
     public class ProfileViewModel : IProfileViewModel
@@ -34,28 +36,34 @@ namespace PC_Designer.ViewModels
 
         public async Task UpdateProfile()
         {
-            var jwtToken = await _accessTokenService.GetAccessTokenAsync("jwt_token");
-            await _httpClient.PutAsync<User>($"profile/updateprofile/{UserId}", this, jwtToken);
-
-            // _toastService.ShowSuccess("Profile info has been saved successfully.");
+            ProfileViewModel profile = this;
+            await _httpClient.PutAsJsonAsync($"profile/updateprofile/{UserId}", profile);
         }
 
         public async Task GetProfile()
         {
-            var jwtToken = await _accessTokenService.GetAccessTokenAsync("jwt_token");
-            ProfileViewModel user = await _httpClient.GetAsync<User>($"profile/getprofile/{UserId}",jwtToken);
-            LoadCurrentObject(user);
+            ProfileViewModel profile = await _httpClient.GetFromJsonAsync<User>($"profile/getprofile/{UserId}");
+            if (profile != null)
+            {
+                LoadCurrentObject(profile);
+            }
+        }
+
+        public async Task Save()
+        {
+            User user = this;
+            await _httpClient.PutAsJsonAsync($"profile/updatetheme/{this.UserId}", user);
+            await _httpClient.PutAsJsonAsync($"profile/updatenotifications/{this.UserId}", user);
         }
 
         public async Task UpdateTheme()
         {
-            await _httpClient.GetFromJsonAsync<User>($"profile/updatetheme?userId={this.UserId}&DarkTheme={this.DarkTheme.ToString()}");
+            await _httpClient.GetFromJsonAsync<User>($"profile/updatetheme?userId={UserId}&DarkTheme={DarkTheme}");
         }
 
         public async Task UpdateNotifications()
         {
-            // User user = this;
-            // await _httpClient.PutAsJsonAsync($"profile/updatenotifications/{this.UserId}", user);
+            await _httpClient.GetFromJsonAsync<User>($"profile/updatenotifications?userId={UserId}&Notifications={Notifications}");
         }
 
         private void LoadCurrentObject(ProfileViewModel profileViewModel)
@@ -67,7 +75,6 @@ namespace PC_Designer.ViewModels
             ProfilePictureData = profileViewModel.ProfilePictureData;
             DarkTheme = profileViewModel.DarkTheme;
             Notifications = profileViewModel.Notifications;
-            //add more fields
         }
 
         public static implicit operator ProfileViewModel(User user)
