@@ -1,6 +1,6 @@
 using PC_Designer.Shared;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;        
+using Microsoft.AspNetCore.Authorization;     
 
 namespace PC_Designer.Server.Controllers
 {

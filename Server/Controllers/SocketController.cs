@@ -6,7 +6,7 @@ namespace PC_Designer.Server.Controllers;
 
 [ApiController]
 [Route("api/sockets")]
-[Authorize]
+// [Authorize]
 public class SocketController : ControllerBase
 {
     private readonly ISocketService _socketService;

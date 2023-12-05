@@ -23,6 +23,12 @@ namespace PC_Designer.Server.Controllers
             this.configuration = configuration;
         }
 
+        protected async Task<User> GetUserByUserID(long userId)
+        {
+            string selectQuery = "SELECT UserId, EmailAddress, Role FROM dbo.Users WHERE UserId=@UserId";
+            return await dbService.GetAsync<User>(selectQuery, new { UserId = userId});
+        }
+
         [HttpGet("getcurrentuser")]
         public async Task<ActionResult<User>> GetCurrentUser()
         {
@@ -46,7 +52,7 @@ namespace PC_Designer.Server.Controllers
                     currentUser.Source = "EXTL";
 
                     await dbService.Insert<User>("INSERT INTO dbo.Users (EmailAddress, Password, Source) VALUES (@EmailAddress, @Password, @Source)",
-                        new { EmailAddress = currentUser.EmailAddress, Password = currentUser.Password, Source = currentUser.Source });
+                        new { currentUser.EmailAddress, currentUser.Password, currentUser.Source });
                 }
             }
 
@@ -57,16 +63,17 @@ namespace PC_Designer.Server.Controllers
         public async Task<ActionResult> RegisterUser(User user)
         {
             //  In this method create a user record and not authenticate the user
-
             var emailAddressExists = await dbService.GetAsync<User>("SELECT TOP 1 * FROM dbo.Users WHERE EmailAddress=@EmailAddress", 
-                new { EmailAddress = user.EmailAddress });
+                new { user.EmailAddress });
 
             if (emailAddressExists == null)
             {
                 user.Password = Utility.Encrypt(user.Password);
                 user.Source = "APPL";
+                user.Role = "General";
 
-                await dbService.Insert<User>("INSERT INTO dbo.Users (EmailAddress, Password, Source) VALUES (@EmailAddress, @Password, @Source)", user);
+                await dbService.Insert<User>("INSERT INTO dbo.Users (EmailAddress, Password, Source, Role) VALUES (@EmailAddress, @Password, @Source, @Role)",
+                    user);
             }
             return Ok();
         }
@@ -111,9 +118,10 @@ namespace PC_Designer.Server.Controllers
             //create claims
             var claimEmail = new Claim(ClaimTypes.Email, user.EmailAddress);
             var claimNameIdentifier = new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString());
+            var claimRole = new Claim(ClaimTypes.Role, user.Role == null ? "" : user.Role);
         
             //create claimsIdentity
-            var claimsIdentity = new ClaimsIdentity(new[] { claimEmail, claimNameIdentifier }, "serverAuth");
+            var claimsIdentity = new ClaimsIdentity(new[] { claimEmail, claimNameIdentifier, claimRole }, "serverAuth");
         
             // generate token that is valid for 7 days
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -149,7 +157,7 @@ namespace PC_Designer.Server.Controllers
         }
 
         [HttpPost("getuserbyjwt")]
-        public async Task<ActionResult<User>> GetUserByJWT([FromBody] string jwtToken)
+        public async Task<ActionResult<User>?> GetUserByJWT([FromBody] string jwtToken)
         {
             try
             {
@@ -175,10 +183,8 @@ namespace PC_Designer.Server.Controllers
                     && jwtSecurityToken.ValidTo > DateTime.Now
                     && jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    //returning the user if found
                     var userId = principle.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                    return await dbService.GetAsync<User>("SELECT TOP 1 * FROM dbo.Users WHERE UserId=@UserId",
-                        new { UserId = Convert.ToInt64(userId) });
+                    return await GetUserByUserID(Convert.ToInt64(userId));
                 }
             }
             catch (Exception ex)
@@ -190,5 +196,29 @@ namespace PC_Designer.Server.Controllers
             //returning null if token is not validated
             return null;
         }
+
+        [HttpGet("getallusers")]
+        public async Task<List<User>> GetAllUsers()
+        {
+            var users = await dbService.GetAll<User>("SELECT UserId, EmailAddress, Role FROM dbo.Users", null);
+            return users;
+        }
+
+        [HttpPut("assignrole")]
+        public async Task<int> AssignRole([FromBody] User user)
+        {
+            var result = await dbService.Update<int>("UPDATE dbo.Users SET Role=@Role WHERE UserId=@UserId", new { user.Role, user.UserId });
+            return result;
+        }
+
+        [HttpDelete("deleteuser/{userId}")]
+        public async Task<int> DeleteUser(long userId)
+        {
+            var result = await dbService.Delete<int>("DELETE FROM dbo.Users WHERE UserId=@UserId", new { UserId = userId });
+            return result;
+        }
+
+
+
     }
 }

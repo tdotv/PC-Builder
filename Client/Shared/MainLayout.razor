@@ -46,8 +46,8 @@
 
      protected async override Task OnAfterRenderAsync(bool firstRender)
     {
-        @* if(firstRender)
-        { *@
+        if(firstRender)
+        {
             var jwtToken = await _accessTokenService.GetAccessTokenAsync("jwt_token");
             if (jwtToken == null) return;
 
@@ -62,7 +62,7 @@
                 var module = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/BlazingChat.Components/js/site.js");
                 await module.InvokeVoidAsync("setTheme", themeName);
             } *@
-        @* } *@
+        }
     }
 
     private async Task LogoutUser()

@@ -25,11 +25,14 @@ builder.Services.AddTransient<CustomAuthorizationHandler>();
 builder.Services.AddBlazoredToast();
 
 // Dependency Ijections
+
 builder.Services.AddScoped<IRegisterViewModel, RegisterViewModel>();
 builder.Services.AddScoped<ILoginViewModel, LoginViewModel>();
 builder.Services.AddScoped<IProfileViewModel, ProfileViewModel>();
 builder.Services.AddScoped<ISocketService, ClientSocketService>();
 builder.Services.AddScoped<IAccessTokenService, WebAppAccessTokenService>();
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+builder.Services.AddScoped<IAssignRolesViewModel, AssignRolesViewModel>();
 
 // builder.Services.AddHttpClient<IProfileViewModel, ProfileViewModel>().AddHttpMessageHandler<CustomAuthorizationHandler>();
 // builder.Services.AddHttpClient<ILoginViewModel, LoginViewModel>().AddHttpMessageHandler<CustomAuthorizationHandler>();

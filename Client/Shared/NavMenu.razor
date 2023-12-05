@@ -2,6 +2,7 @@
 @inject HttpClient _httpClient
 @inject NavigationManager _navigationManager
 @inject IAccessTokenService _accessTokenService
+@inject ILocalStorageService _localStorageService
 
 <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
@@ -24,13 +25,20 @@
                 <span class="oi oi-heart" aria-hidden="true"></span> Profile
             </NavLink>
         </div>
-        @* <AuthorizeView Roles="admin"> *@
+        <AuthorizeView Roles="admin">
             <div class="nav-item px-3">
                 <NavLink class="nav-link" href="fetchdata">
                     <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
                 </NavLink>
             </div>
-        @* </AuthorizeView> *@
+        </AuthorizeView>
+        <AuthorizeView Roles="admin">
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="assignroles">
+                    <span class="oi oi-key" aria-hidden="true"></span> Assign Roles
+                </NavLink>
+            </div>
+        </AuthorizeView>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="aboutus">
                 <span class="oi oi-plus" aria-hidden="true"></span> About Us
@@ -56,8 +64,7 @@
 
     private async Task Logout()
     {
-        @* await _accessTokenService.RemoveAccessTokenAsync("jwt_token"); *@
-        await _httpClient.GetAsync("user/logoutuser");
+        await _localStorageService.RemoveItemAsync("jwt_token");
         _navigationManager.NavigateTo("/", true);
     }
 }

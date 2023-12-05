@@ -49,6 +49,7 @@ namespace PC_Designer.ViewModels
             try
             {
                 var jsonToken = JsonSerializer.Serialize(jwtToken);
+                
 
                 //preparing the http request
                 using var requestMessage = new HttpRequestMessage(HttpMethod.Post, "user/getuserbyjwt")
