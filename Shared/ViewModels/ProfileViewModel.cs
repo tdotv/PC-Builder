@@ -36,8 +36,19 @@ namespace PC_Designer.ViewModels
 
         public async Task UpdateProfile()
         {
-            ProfileViewModel profile = this;
-            await _httpClient.PutAsJsonAsync($"profile/updateprofile/{UserId}", profile);
+            User user = this;
+            await _httpClient.PutAsJsonAsync("profile/updateprofile/" + this.UserId, user);
+
+            // var jwtToken = await _accessTokenService.GetAccessTokenAsync("jwt_token");
+            // await _httpClient.PutAsync<User>($"profile/updateprofile/{UserId}", this, jwtToken);
+        }
+
+        public async Task UpdateProfileWithImage(byte[] imageBytes)
+        {
+            User user = this;
+            user.ProfilePictureData = imageBytes;
+
+            await _httpClient.PutAsJsonAsync("profile/updateprofile/" + this.UserId, user);
         }
 
         public async Task GetProfile()
@@ -50,10 +61,14 @@ namespace PC_Designer.ViewModels
         }
 
         public async Task Save()
-        {
-            User user = this;
-            await _httpClient.PutAsJsonAsync($"profile/updatetheme/{this.UserId}", user);
-            await _httpClient.PutAsJsonAsync($"profile/updatenotifications/{this.UserId}", user);
+        {   
+            try
+            {
+                await _httpClient.GetFromJsonAsync<User>($"profile/updatetheme?userId={this.UserId}&DarkTheme={this.DarkTheme.ToString()}");
+                await _httpClient.GetFromJsonAsync<User>($"profile/updatenotifications?userId={this.UserId}&Notifications={this.Notifications.ToString()}");
+            }
+            catch (HttpRequestException httpEx) { Console.WriteLine($"HTTP Request Error: {httpEx.Message}"); }
+            catch (Exception ex) { Console.WriteLine($"Error: {ex.Message}"); }
         }
 
         public async Task UpdateTheme()

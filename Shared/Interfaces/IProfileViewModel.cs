@@ -19,5 +19,7 @@ namespace PC_Designer.ViewModels
         public Task UpdateTheme();
         public Task UpdateNotifications();
         public Task GetProfile();
+        public Task Save();
+        public Task UpdateProfileWithImage(byte[] imageBytes);
     }
 }
