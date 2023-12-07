@@ -41,7 +41,7 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddScoped<IDbService, DbService>();
-builder.Services.AddScoped<ISocketService, ServerSocketService>();
+builder.Services.AddScoped<IPcConfigurationService, ServerConfigurationService>();
 
 builder.Services.AddHttpClient();
 builder.Services.AddHttpContextAccessor();

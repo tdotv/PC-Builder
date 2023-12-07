@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PC_Designer.Shared;
 
-public class PCConfigurations
+public class PcConfigurations
 {
     [Key]
     public int PcConfigurationId { get; set; }

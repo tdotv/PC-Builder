@@ -1,5 +1,5 @@
 ﻿@page "/fetchdata"
-@inject ISocketService SocketService
+@inject IPcConfigurationService ConfigurationService
 @inject HttpClient Http
 @using PC_Designer.ViewModels
 
@@ -9,7 +9,7 @@
 
 <p>This component fetching data from the server.</p>
 
-@if (sockets == null)
+@if (configurations == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -18,86 +18,41 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
+                <th>Motherboard</th>
+                <th>CPU</th>
+                <th>Graphical Card</th>
+                <th>Case</th>
                 <th>Name</th>
-                <th>Actions</th>
+                <th>Total Wattage</th>
+                <th>Create On</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var socket in sockets)
+            @foreach (var configuration in configurations)
             {
                 <tr>
-                    <td>@socket.SocketId</td>
-                    <td>@socket.Name</td>
-                    <td>
-                        <button class="btn btn-primary" @onclick="() => EditSocket(socket)">Edit</button>
-                        <button class="btn btn-danger" @onclick="() => DeleteSocket(socket.SocketId)">Delete</button>
-                    </td>
+                    <td>@configuration.PcConfigurationId</td>
+                    <td>@(configuration.MotherBoard != null ? configuration.MotherBoard.Name : "N/A")</td>
+                    <td>@(configuration.Cpu != null ? configuration.Cpu.Name : "N/A")</td>
+                    <td>@(configuration.GraphicalCard != null ? configuration.GraphicalCard.Name : "N/A")</td>
+                    <td>@(configuration.Case != null ? configuration.Case.Name : "N/A")</td>
+                    <td>@configuration.Name</td>
+                    <td>@configuration.TotalWattage</td>
+                    <td>@configuration.CreateOn</td>
                 </tr>
             }
         </tbody>
     </table>
 }
 
-<div>
-    <h4>Create/Edit Socket</h4>
-    <EditForm Model="currentSocket" OnValidSubmit="SaveSocket">
-        <DataAnnotationsValidator />
-        <div class="form-group">
-            <label for="Name">Name:</label>
-            <InputText id="Name" class="form-control" @bind-Value="currentSocket.Name" />
-            <ValidationMessage For="() => currentSocket.Name" />
-        </div>
-        <button type="submit" class="btn btn-success">Save</button>
-    </EditForm>
-</div>
-
 @code {
-
-    @* [Inject] private ISocketService socketService { get; set; }
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-        Console.WriteLine($"Injected service name: {SocketService?.GetType().Name}");
-    } *@
-
-    private List<SocketsViewModel> sockets = new List<SocketsViewModel>();
-    private SocketsViewModel currentSocket = new SocketsViewModel();  // for Create or Edit
+    private List<PcConfigurationViewModel> configurations = new List<PcConfigurationViewModel>();
+    private PcConfigurationViewModel currentConfiguration = new PcConfigurationViewModel();  // for Create or Edit
 
     protected override async Task OnInitializedAsync()
     {
-        sockets = (await SocketService.GetSocketsAsync())?.Select
-        (socket => (SocketsViewModel)socket).ToList() ?? new List<SocketsViewModel>();
+        configurations = (await ConfigurationService.GetConfigurationsAsync())?.Select
+            (configurations => (PcConfigurationViewModel)configurations).ToList() ?? new List<PcConfigurationViewModel>();
     }
-
-    private async Task SaveSocket()
-    {
-        if (currentSocket.SocketId == 0)
-        {
-            await SocketService.CreateSocketsAsync(currentSocket);
-        }
-        else
-        {
-            await SocketService.UpdateSocketsAsync(currentSocket);
-        }
-        
-        var socketModels =  // Reload the list of Sockets
-        sockets = (await SocketService.GetSocketsAsync())?.Select
-        (socket => (SocketsViewModel)socket).ToList() ?? new List<SocketsViewModel>();
-        currentSocket = new SocketsViewModel();  // Reset the currentSocket for the next Create or Edit
-    }
-
-    private void EditSocket(SocketsViewModel socket)
-    {
-        //  Set the currentSocket for editing
-        currentSocket = socket;
-    }
-
-    private async Task DeleteSocket(int SocketId)
-    {
-        await SocketService.DeleteSocketsAsync(SocketId);
-        sockets = (await SocketService.GetSocketsAsync())?.Select
-        (socket => (SocketsViewModel)socket).ToList() ?? new List<SocketsViewModel>();
-    }
-
 }
