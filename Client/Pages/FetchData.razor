@@ -1,13 +1,13 @@
-﻿@inject ISocketService SocketService
-@page "/fetchdata"
+﻿@page "/fetchdata"
+@inject ISocketService SocketService
 @inject HttpClient Http
 @using PC_Designer.ViewModels
 
-<PageTitle>Sockets</PageTitle>
+<PageTitle>Data</PageTitle>
 
-<h1>Sockets</h1>
+<h1>Data</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<p>This component fetching data from the server.</p>
 
 @if (sockets == null)
 {

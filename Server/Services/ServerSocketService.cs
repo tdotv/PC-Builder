@@ -5,7 +5,10 @@ public class ServerSocketService : ISocketService
 {
     private readonly IDbService _dbService;
 
-    public ServerSocketService(IDbService dbService) { _dbService = dbService ;}
+    public ServerSocketService(IDbService dbService)
+    { 
+        _dbService = dbService ;
+    }
 
     public async Task<List<SocketsViewModel>?> GetSocketsAsync() 
     {
