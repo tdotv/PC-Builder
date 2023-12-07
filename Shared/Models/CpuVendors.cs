@@ -2,12 +2,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PC_Designer.Shared;
 
-public class Sockets
+public class CpuVendors
 {
     [Key]
-    public int SocketId { get; set; }
+    public int CpuVendorId { get; set; }
 
-    [Required(ErrorMessage = "Name can't be empty")]
     public string Name { get; set; } = null!;
-
 }
