@@ -1,9 +1,103 @@
 ﻿@page "/index"
+@inject HttpClient Http
+@inject IPcConfigurationService configurationService
+@inject IJSRuntime _jsRuntime
+@using PC_Designer.ViewModels
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Configurations</PageTitle>
 
-<h1>Hello, world!</h1>
+<div>
+    <h2>Configurations</h2>
+    <div class="card-deck">
+        @foreach (var configuration in configurations)
+        {
+            <div class="card">
+                <div class="card-content">
+                    <h5 class="card-title">@configuration.Name</h5>
+                    <p class="card-text">@configuration.About</p>
+                    <p class="card-text">@configuration.MotherBoardName</p>
+                    <p class="card-text">@configuration.CpuName</p>
+                    <p class="card-text">@configuration.GraphicalCardName</p>
+                    <p class="card-text">@configuration.CaseName</p>
+                    <div class="left-bottom">
+                        <p class="card-text"><small>Cost: @configuration.Cost</small></p>
+                    </div>
+                    <div class="right-bottom">
+                        <p class="card-text"><small>Power: @configuration.TotalWattage Wattage</small></p>
+                    </div>
+                    <AuthorizeView Roles="admin">
+                        <button @onclick="() => DeleteConfigurationAsync(configuration.PcConfigurationId)" class="btn btn-danger">Delete</button>
+                    </AuthorizeView>
+                </div>
+            </div>
+        }
+    </div>
+</div>
 
-Welcome to your new app.
+@code {
+    private List<PcConfigurationViewModel> configurations = new List<PcConfigurationViewModel>();
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+    protected override async Task OnInitializedAsync()
+    {
+        configurations = (await configurationService.GetConfigurationsAsync())?.Select
+            (configuration => (PcConfigurationViewModel)configuration).ToList() ?? new List<PcConfigurationViewModel>();
+    }
+
+    private async Task DeleteConfigurationAsync(int id)
+    {
+        var success = await configurationService.DeleteConfigurationsAsync(id);
+        if (success)
+        {
+            configurations = await configurationService.GetConfigurationsAsync();
+        }
+    }
+}
+
+@*@code {
+
+     [Inject] private IPcConfigurationService configurationService { get; set; }
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Console.WriteLine($"Injected service name: {ConfigurationService?.GetType().Name}");
+    } 
+
+    private List<PcConfigurationViewModel> configurations = new List<PcConfigurationViewModel>();
+    private PcConfigurationViewModel currentConfiguration = new PcConfigurationViewModel();  // for Create or Edit
+
+    protected override async Task OnInitializedAsync()
+    {
+        configurations = (await ConfigurationService.GetConfigurationsAsync())?.Select
+        (configuration => (PcConfigurationViewModel)configuration).ToList() ?? new List<PcConfigurationViewModel>();
+    }
+
+    private async Task SaveConfiguration()
+    {
+        if (currentConfiguration.PcConfigurationId == 0)
+        {
+            await ConfigurationService.CreateConfigurationsAsync(currentConfiguration);
+        }
+        else
+        {
+            await ConfigurationService.UpdateConfigurationsAsync(currentConfiguration);
+        }
+        
+        var configurationModels =  // Reload the list of Configurations
+        configurations = (await ConfigurationService.GetConfigurationsAsync())?.Select
+        (configuration => (PcConfigurationViewModel)configuration).ToList() ?? new List<PcConfigurationViewModel>();
+        currentConfiguration = new PcConfigurationViewModel();  // Reset the currentConfiguration for the next Create or Edit
+    } 
+
+    private void EditConfiguration(PcConfigurationViewModel configuration)
+    {
+        //  Set the currentConfiguration for editing
+        currentConfiguration = configuration;
+    }
+
+    private async Task DeleteConfiguration(int id)
+    {
+        await ConfigurationService.DeleteConfigurationsAsync(PcConfigurationId);
+        configurations = (await ConfigurationService.GetConfigurationsAsync())?.Select
+        (configuration => (PcConfigurationViewModel)configuration).ToList() ?? new List<PcConfigurationViewModel>();
+    }
+}*@

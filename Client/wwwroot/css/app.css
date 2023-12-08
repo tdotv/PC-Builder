@@ -38,6 +38,33 @@ a, .btn-link {
     color: red;
 }
 
+.card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 8px;
+}
+
+.card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 100%;
+}
+
+.left-bottom,
+.right-bottom {
+    flex-grow: 1;
+}
+
+.left-bottom {
+    text-align: left;
+}
+
+.right-bottom {
+    text-align: right;
+}
+
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;

@@ -28,6 +28,8 @@ public class PcConfigurations
 
     public string? About { get; set; }
 
+    public decimal Cost { get; set; }
+
     public int TotalWattage { get; set; }
 
     public DateTime CreatedOn { get; set; } = DateTime.UtcNow;

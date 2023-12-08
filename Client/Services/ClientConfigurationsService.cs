@@ -18,20 +18,6 @@ public class ClientConfigurationsService : IPcConfigurationService
             : null;
     }
 
-    // public async Task<int> CreateConfigurationsAsync(PcConfigurationViewModel configurationViewModel)
-    // {
-    //     var response = await _httpClient.PostAsJsonAsync("api/configuration", configurationViewModel);
-    //     return response.IsSuccessStatusCode
-    //         ? await response.Content.ReadFromJsonAsync<int>()
-    //         : 0;
-    // }
-
-    // public async Task<bool> UpdateConfigurationAsync(PcConfigurations configuration)
-    // {
-    //     var response = await _httpClient.PutAsJsonAsync($"api/configuration/{configuration.PcConfigurationId}", configuration);
-    //     return response.IsSuccessStatusCode;
-    // }
-
     public async Task<bool> DeleteConfigurationsAsync(int id)
     {
         var response = await _httpClient.DeleteAsync($"api/configuration/{id}");

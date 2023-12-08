@@ -17,6 +17,7 @@ public class ServerConfigurationService : IPcConfigurationService
                 PcConfigurations.PcConfigurationId,
                 PcConfigurations.About,
                 PcConfigurations.Name,
+                PcConfigurations.Cost,
                 PcConfigurations.TotalWattage,
                 PcConfigurations.CreatedOn,
                 MotherBoards.MotherBoardName AS MotherboardName,

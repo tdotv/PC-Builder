@@ -88,15 +88,14 @@ else
 
                     <div class="row" style="margin-bottom: 10px;">
                         <div>
-                            <RadzenSwitch @bind-Value="@_profileViewModel.Notifications" Change="UpdateTheme" />
+                            <label> Notification </label>  
+                            <RadzenSwitch @bind-Value="@_profileViewModel.Notifications" Change="UpdateNotifications" />
                             <span>&nbsp; &nbsp;</span>
-                            <label style="margin-right: 15px;"> Notification </label>  
 
-                            <RadzenSwitch @bind-Value="@_profileViewModel.DarkTheme" Change="UpdateNotifications" />
+                            <label style="margin-left: 15px"> Dark Theme </label> 
+                            <RadzenSwitch @bind-Value="@_profileViewModel.DarkTheme" Change="UpdateTheme" />
                             <span>&nbsp; &nbsp;</span>
-                            <label> Dark Theme </label> 
                         </div>
-
                     </div>
                     <div >
                         <button class="btn btn-primary" @onclick="Save">Save</button>
