@@ -16,7 +16,7 @@ public class MotherBoards
     public int SocketId { get; set; }
     public Sockets Socket { get; set; } = null!;
 
-    public string Name { get; set; } = null!;
+    public string MotherBoardName { get; set; } = null!;
 
     public decimal Price { get; set; }
 

@@ -12,7 +12,7 @@ public class CPUs
     public int CpuVendorId { get; set; }
     public CpuVendors CpuVendor { get; set; } = null!;
 
-    public string Name { get; set; } = null!;
+    public string CpuName { get; set; } = null!;
 
     public decimal Price { get; set; }
 

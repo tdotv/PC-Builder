@@ -7,7 +7,7 @@ public class ComputerCases
     [Key]
     public int CaseId { get; set; }
 
-    public string Name { get; set; } = null!;
+    public string CaseName { get; set; } = null!;
 
     public decimal Price { get; set; }
 

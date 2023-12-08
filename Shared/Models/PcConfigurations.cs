@@ -8,26 +8,28 @@ public class PcConfigurations
     [Key]
     public int PcConfigurationId { get; set; }
 
-    [ForeignKey("MotherBoards")]
+    // [ForeignKey("MotherBoards")]
     public int MotherBoardId { get; set; }
-    public MotherBoards MotherBoard { get; set; } = null!;
+    // public MotherBoards MotherBoard { get; set; } = null!;
 
-    [ForeignKey("CPUs")]
+    // [ForeignKey("CPUs")]
     public int CpuId { get; set; }
-    public CPUs Cpu { get; set; } = null!;
+    // public CPUs Cpu { get; set; } = null!;
 
-    [ForeignKey("GraphicalCards")]
+    // [ForeignKey("GraphicalCards")]
     public int GraphicalCardId { get; set; }
-    public GraphicalCards GraphicalCard { get; set; } = null!;
+    // public GraphicalCards GraphicalCard { get; set; } = null!;
 
-    [ForeignKey("ComputerCases")]
+    // [ForeignKey("ComputerCases")]
     public int CaseId { get; set; }
-    public ComputerCases Case { get; set; } = null!;
+    // public ComputerCases Case { get; set; } = null!;
 
     public string? Name { get; set; }
 
+    public string? About { get; set; }
+
     public int TotalWattage { get; set; }
 
-    public DateTime CreateOn { get; set; } = DateTime.UtcNow;
+    public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
 
 }

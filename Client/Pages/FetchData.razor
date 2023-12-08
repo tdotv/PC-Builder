@@ -33,13 +33,13 @@ else
             {
                 <tr>
                     <td>@configuration.PcConfigurationId</td>
-                    <td>@(configuration.MotherBoard != null ? configuration.MotherBoard.Name : "N/A")</td>
-                    <td>@(configuration.Cpu != null ? configuration.Cpu.Name : "N/A")</td>
-                    <td>@(configuration.GraphicalCard != null ? configuration.GraphicalCard.Name : "N/A")</td>
-                    <td>@(configuration.Case != null ? configuration.Case.Name : "N/A")</td>
+                    <td>@configuration.MotherBoardName</td>
+                    <td>@configuration.CpuName</td>
+                    <td>@configuration.GraphicalCardName</td>
+                    <td>@configuration.CaseName</td>
                     <td>@configuration.Name</td>
                     <td>@configuration.TotalWattage</td>
-                    <td>@configuration.CreateOn</td>
+                    <td>@configuration.CreatedOn</td>
                 </tr>
             }
         </tbody>

@@ -1,0 +1,27 @@
+@page "/configurations"
+
+<PageTitle>Configurations</PageTitle>
+
+<div>
+    <h2>Create Configuration</h2>
+    <a asp-action="Create" class="btn btn-primary">Create New Configuration</a>
+</div>
+
+<div>
+    <h2>Your Configurations</h2>
+    <div class="card-deck">
+        @foreach (var configuration in Model)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@configuration.Name</h5>
+                    <p class="card-text">@configuration.About</p>
+                    <p class="card-text"><small>Power: @configuration.TotalWattage Wattage</small></p>
+                    <p class="card-text"><small>Created on: @configuration.CreateOn.ToString("dd.MM.yyyy")</small></p>
+                    <a asp-action="Edit" asp-route-id="@configuration.PcConfigurationId" class="btn btn-primary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@configuration.PcConfigurationId" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -7,7 +7,7 @@ public class GraphicalCards
     [Key]
     public int GraphicalCardId { get; set; }
 
-    public string Name { get; set; } = null!;
+    public string GraphicalCardName { get; set; } = null!;
 
     public decimal Price { get; set; }
 
