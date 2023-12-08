@@ -15,6 +15,7 @@ public class ServerConfigurationService : IPcConfigurationService
         var query = @"
             SELECT 
                 PcConfigurations.PcConfigurationId,
+                PcConfigurations.About,
                 PcConfigurations.Name,
                 PcConfigurations.TotalWattage,
                 PcConfigurations.CreatedOn,
@@ -30,5 +31,35 @@ public class ServerConfigurationService : IPcConfigurationService
 
         var configurations = await _dbService.GetAll<PcConfigurationViewModel>(query, new { }); 
         return configurations.Select(configuration => (PcConfigurationViewModel)configuration).ToList(); 
+    }
+
+    // public async Task<int> CreateConfigurationsAsync(PcConfigurationViewModel configurationViewModel)
+    // {
+    //     var command = @"
+    //         INSERT INTO dbo.PcConfigurations (MotherBoardId, CpuId, GraphicalCardId, CaseId, Name, TotalWattage, CreatedOn)
+    //         VALUES (@MotherBoardId, @CpuId, @GraphicalCardId, @CaseId, @Name, @TotalWattage, @CreatedOn);
+    //         SELECT SCOPE_IDENTITY();";
+
+    //     var id = await _dbService.Insert<int>(command, configurationViewModel);
+    //     return id;
+    // }
+
+    // public async Task<bool> UpdateConfigurationAsync(PcConfigurations configuration)
+    // {
+    //     var command = @"
+    //         UPDATE dbo.PcConfigurations
+    //         SET MotherBoardId = @MotherBoardId, CpuId = @CpuId, GraphicalCardId = @GraphicalCardId,
+    //             CaseId = @CaseId, Name = @Name, TotalWattage = @TotalWattage, CreatedOn = @CreatedOn
+    //         WHERE PcConfigurationId = @PcConfigurationId";
+
+    //     await _dbService.Update<int>(command, configuration);
+    //     return true;
+    // }
+
+    public async Task<bool> DeleteConfigurationsAsync(int id)
+    {
+        var command = "DELETE FROM dbo.PcConfigurations WHERE PcConfigurationId = @Id";
+        await _dbService.Delete<int>(command, new { Id = id });
+        return true;
     }
 }
