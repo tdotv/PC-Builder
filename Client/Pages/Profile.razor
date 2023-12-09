@@ -16,11 +16,19 @@
 }
 else
 {
-    <div class="card mb-3 " >
-        <div class="col-md-8 ">
-            <div class="row justify-content-ceter align-items-center">
-                <div class="col-md-4 text-center" >
-                    @if(_profileViewModel.ProfilePictureData != null)
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Profile</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="box">
+                @if(_profileViewModel.ProfilePictureData != null)
                     {
                         <img src="data:image/png;base64,@Convert.ToBase64String(_profileViewModel.ProfilePictureData)" alt="Profile picture" 
                             style="max-width: 150px; max-height: 150px; border-radius: 35%; margin-left: 50px;" class="mx-3"/>
@@ -30,81 +38,76 @@ else
                         <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
                             style="max-width: 150px; max-height: 150px; border-radius: 35%; margin-left: 50px;" class="mx-3" />
                     }
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h4 class="card-title">@($"{_profileViewModel.FirstName} {_profileViewModel.LastName}")</h4>
-                        <p class="card-text"><strong>Email:</strong> @_profileViewModel.EmailAddress</p>
-                        <button class="btn btn-link" @onclick="ToggleEditMode">Edit Profile</button>
-                    </div>
-                </div>
+                <ul>
+                    <li>@($"{_profileViewModel.FirstName} {_profileViewModel.LastName}")</li>
+                    <li>@_profileViewModel.EmailAddress</li>
+                </ul>
             </div>
-            @if (_profileViewModel.IsEditing)
-            {
-                <div class="card mt-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Edit Profile</h5>
-                        <EditForm Model="_profileViewModel" OnInvalidSubmit="_profileViewModel.UpdateProfile">
-                            <ValidationSummary />
-                            <div class="col-4">
-                                <InputFile OnChange="@OnInputFileChanged" multiple accept=".png,.jpg,.jpeg" />
-                            </div>
-                            <div class="form-group>">
-                                <InputText id="FirstName" @bind-Value="_profileViewModel.FirstName" class="form-control" />
-                            </div>
-                            <div class="form-group>">
-                                <label for="FirstName">Last Name:</label>
-                                <InputText id="LastName" @bind-Value="_profileViewModel.LastName" class="form-control" />
-                            </div>
-                            <div class="form-group>">
-                                <label for="EmailAddress">Email:</label>
-                                <InputText id="EmailAddress" @bind-Value="_profileViewModel.EmailAddress" class="form-control" />
-                            </div>
-                            <div class="form-group>">
-                                <label for="AboutMe">About Me:</label>
-                                <InputText id="AboutMe" @bind-Value="_profileViewModel.AboutMe" class="form-control" />
-                            </div>
-                        
-                        </EditForm>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-    <div class="row">
-        <!-- ... -->
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Additional Information</h5>
-                    @_profileViewModel.AboutMe
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h6 class="card-title">Settings</h6>
+            <div class="About">
+                <ul>
+                    <h1>Your user profile</h1>
+                </ul>
+                <ul>
+                    <h3><strong>Settings</strong></h3>
+                    <li>
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div>
+                                <label> Notification </label>  
+                                <RadzenSwitch @bind-Value="@_profileViewModel.Notifications" Change="UpdateNotifications" />
+                                <span>&nbsp; &nbsp;</span>
 
-                    <div class="row" style="margin-bottom: 10px;">
-                        <div>
-                            <label> Notification </label>  
-                            <RadzenSwitch @bind-Value="@_profileViewModel.Notifications" Change="UpdateNotifications" />
-                            <span>&nbsp; &nbsp;</span>
-
-                            <label style="margin-left: 15px"> Dark Theme </label> 
-                            <RadzenSwitch @bind-Value="@_profileViewModel.DarkTheme" Change="UpdateTheme" />
-                            <span>&nbsp; &nbsp;</span>
+                                <label style="margin-left: 15px"> Dark Theme </label> 
+                                <RadzenSwitch @bind-Value="@_profileViewModel.DarkTheme" Change="UpdateTheme" />
+                                <span>&nbsp; &nbsp;</span>
+                            </div>
                         </div>
-                    </div>
-                    <div >
-                        <button class="btn btn-primary" @onclick="Save">Save</button>
-                    </div>
-
-                </div>
+                    </li>
+                </ul>
+                <ul>
+                    <h3>Edit Profile</h3>
+                    <li>
+                        <button class="btn btn-secondary" @onclick="ToggleEditMode">Click me!</button>
+                        @if (_profileViewModel.IsEditing)
+                        {
+                            <div class="card mt-3">
+                                <div class="card-body">
+                                    <EditForm Model="_profileViewModel" OnInvalidSubmit="_profileViewModel.UpdateProfile">
+                                        <ValidationSummary />
+                                        <div class="col-4">
+                                            <InputFile OnChange="@OnInputFileChanged"/>
+                                            <br>
+                                        </div>
+                                        <div class="form-group>">
+                                            <label for="LastName">First Name:</label>
+                                            <InputText id="FirstName" @bind-Value="_profileViewModel.FirstName" class="form-control" />
+                                        </div>
+                                        <div class="form-group>">
+                                            <label for="LastName">Last Name:</label>
+                                            <InputText id="LastName" @bind-Value="_profileViewModel.LastName" class="form-control" />
+                                        </div>
+                                        <div class="form-group>">
+                                            <label for="EmailAddress">Email:</label>
+                                            <InputText id="EmailAddress" @bind-Value="_profileViewModel.EmailAddress" class="form-control" />
+                                        </div>
+                                        <div class="form-group>">
+                                            <label for="AboutMe">About Me:</label>
+                                            <InputText id="AboutMe" @bind-Value="_profileViewModel.AboutMe" class="form-control" />
+                                        </div>
+                                    
+                                    </EditForm>
+                                </div>
+                            </div>
+                        }
+                    </li>
+                </ul>
+                <ul>
+                    <h3>About Me</h3>
+                    <p>@_profileViewModel.AboutMe</p>
+                </ul>
             </div>
         </div>
-    </div>
+    </body>
+    </html>
 }
 
 @code {
