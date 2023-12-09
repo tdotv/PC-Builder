@@ -70,7 +70,7 @@ namespace PC_Designer.Server.Controllers
             {
                 user.Password = Utility.Encrypt(user.Password);
                 user.Source = "APPL";
-                user.Role = "General";
+                user.Role = "general";
 
                 await dbService.Insert<User>("INSERT INTO dbo.Users (EmailAddress, Password, Source, Role) VALUES (@EmailAddress, @Password, @Source, @Role)",
                     user);

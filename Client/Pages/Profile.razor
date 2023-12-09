@@ -48,7 +48,7 @@ else
                     <h1>Your user profile</h1>
                 </ul>
                 <ul>
-                    <h3><strong>Settings</strong></h3>
+                    <h3>Settings</h3>
                     <li>
                         <div class="row" style="margin-bottom: 10px;">
                             <div>
@@ -66,7 +66,7 @@ else
                 <ul>
                     <h3>Edit Profile</h3>
                     <li>
-                        <button class="btn btn-secondary" @onclick="ToggleEditMode">Click me!</button>
+                        <button class="btn btn-primary" @onclick="ToggleEditMode">Click me!</button>
                         @if (_profileViewModel.IsEditing)
                         {
                             <div class="card mt-3">

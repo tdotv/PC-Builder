@@ -5,37 +5,54 @@
 @inject IAssignRolesViewModel _assignRolesViewModel
 @inject IToastService _toastService
 
-<h2 class="white-text"><b>Assign Roles</b></h2>
-<hr class="white-horizontal-line" />
-<br />
-
-@if (_assignRolesViewModel.AllUsers?.Any() ?? false)
-{
-    foreach (var user in _assignRolesViewModel.AllUsers)
-    {
-        <div class="list-group-item list-group-item-action flex-column align-items-start contact-list-item" style="height: 55px;">
-            <div class="row col-12">
-                <div class="col-6" style="font-size: large;">
-                    @user.EmailAddress
-                </div>
-                <div class="col-3">
-                    <select class="form-control" 
-                            name="roles" 
-                            id="roles" 
-                            @onchange="@AssignRole">
-                        <option value=@($"#{user.UserId}")>None</option>
-                        <option value=@($"admin#{user.UserId}") selected="@(user.Role=="admin")">Admin</option>
-                        <option value=@($"general#{user.UserId}") selected="@(user.Role =="general")">General</option>
-                    </select>
-                </div>
-                <div class="col-3">
-                    <button class="btn btn-danger" @onclick="@(() => DeleteUser(user.UserId))">Block</button>
-                </div>
-            </div>
-        </div>
+<style>
+    .contact-list-item {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #fff;
+        transition: box-shadow 0.3s ease;
     }
-}
-<br />
+
+    .contact-list-item:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<h2 class="text-dark"><b>Assign Roles</b></h2>
+<hr class="bg-dark" />
+
+<div class="row mt-4">
+    <div class="col-md-8">
+        @if (_assignRolesViewModel.AllUsers?.Any() ?? false)
+        {
+            @foreach (var user in _assignRolesViewModel.AllUsers)
+            {
+                <div class="contact-list-item">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <p style="font-size: large;">@user.EmailAddress</p>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" 
+                                    name="roles" 
+                                    id="roles" 
+                                    @onchange="@AssignRole">
+                                <option value=@($"#{user.UserId}")>None</option>
+                                <option value=@($"admin#{user.UserId}") selected="@(user.Role=="admin")">Admin</option>
+                                <option value=@($"general#{user.UserId}") selected="@(user.Role =="general")">General</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-danger" @onclick="@(() => DeleteUser(user.UserId))">Block</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
 
 @code {
     protected override async Task OnInitializedAsync()
