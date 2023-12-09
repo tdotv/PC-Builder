@@ -7,6 +7,7 @@
 @inject IToastService _toastService
 @inject IJSRuntime _jsRuntime
 
+<PageTitle>Login</PageTitle>
 
 <body>
     <div class="content">
@@ -64,16 +65,11 @@
     {
         var authState = await authenticationState;
         var user = authState.User;
-        @* if(user.Identity.IsAuthenticated)
-        {
-            _navigationManager.NavigateTo("/profile",true);
-        } *@
     }
     
     public async Task LoginUser()
     {
         await _loginViewModel.LoginUser();
-        @* _navigationManager.NavigateTo("/profile",true); *@
     }
 
      public async Task AuthenticateJWT()
@@ -82,7 +78,6 @@
         if(authenticationResponse.Token != string.Empty)
         {
             await _localStorageService.SetItemAsync("jwt_token",authenticationResponse.Token);
-            @* _navigationManager.NavigateTo("/profile",true); *@
         }
         else
         {

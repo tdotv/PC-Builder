@@ -73,3 +73,5 @@
 /home/tdotv/MyCode/PC_Designer/Server/bin/Debug/net7.0/Microsoft.IdentityModel.Tokens.dll
 /home/tdotv/MyCode/PC_Designer/Server/bin/Debug/net7.0/System.IdentityModel.Tokens.Jwt.dll
 /home/tdotv/MyCode/PC_Designer/Server/bin/Debug/net7.0/Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll
+/home/tdotv/MyCode/PC_Designer/Server/bin/Debug/net7.0/AutoMapper.dll
+/home/tdotv/MyCode/PC_Designer/Server/bin/Debug/net7.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll

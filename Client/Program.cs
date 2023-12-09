@@ -29,7 +29,9 @@ builder.Services.AddBlazoredToast();
 builder.Services.AddScoped<IRegisterViewModel, RegisterViewModel>();
 builder.Services.AddScoped<ILoginViewModel, LoginViewModel>();
 builder.Services.AddScoped<IProfileViewModel, ProfileViewModel>();
-builder.Services.AddScoped<IPcConfigurationService, ClientConfigurationsService>();
+
+builder.Services.AddScoped<IPcConfigurationService, ClientConfigurationService>();
+
 builder.Services.AddScoped<IAccessTokenService, WebAppAccessTokenService>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 builder.Services.AddScoped<IAssignRolesViewModel, AssignRolesViewModel>();

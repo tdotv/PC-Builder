@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
+using Microsoft.Extensions.DependencyInjection;
 using PC_Designer.Shared;
+using PC_Designer.ViewModels;
 
 namespace PC_Designer.Server.Controllers;
 
@@ -10,8 +13,13 @@ namespace PC_Designer.Server.Controllers;
 public class PcConfigurationController : ControllerBase
 {
     private readonly IPcConfigurationService _configurationService;
+    private readonly IMapper _mapper;
 
-    public PcConfigurationController(IPcConfigurationService configurationService) { _configurationService = configurationService; }
+    public PcConfigurationController(IPcConfigurationService configurationService, IMapper mapper) 
+    { 
+        _configurationService = configurationService; 
+        _mapper = mapper;
+    }
 
     [HttpGet]
     public async Task<ActionResult<List<PcConfigurations>>> GetConfigurations()
@@ -20,12 +28,13 @@ public class PcConfigurationController : ControllerBase
         return Ok(configurations); 
     }
 
-    // [HttpPost]
-    // public async Task<ActionResult<bool>> CreateConfigurations(PcConfigurations configurations)
-    // {
-    //     var success = await _configurationService.CreateConfigurationsAsync(configurations);
-    //     return Ok(success);
-    // }
+    [HttpPost]
+    public async Task<ActionResult<int>> CreateConfigurations(PcConfigurations configuration)   //  [FromBody]
+    {
+        var viewModel = _mapper.Map<PcConfigurationViewModel>(configuration);
+        var id = await _configurationService.CreateConfigurationsAsync(viewModel);
+        return Ok(id);
+    }
 
     // [HttpPut("{id}")]
     // public async Task<ActionResult<PcConfigurations>> UpdateConfigurations(int id, PcConfigurations configurations)

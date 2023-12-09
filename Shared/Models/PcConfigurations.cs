@@ -10,19 +10,19 @@ public class PcConfigurations
 
     [ForeignKey("MotherBoards")]
     public int MotherBoardId { get; set; }
-    public MotherBoards MotherBoard { get; set; } = null!;
+    public MotherBoards? MotherBoard { get; set; }
 
     [ForeignKey("CPUs")]
     public int CpuId { get; set; }
-    public CPUs Cpu { get; set; } = null!;
+    public CPUs? Cpu { get; set; }
 
     [ForeignKey("GraphicalCards")]
     public int GraphicalCardId { get; set; }
-    public GraphicalCards GraphicalCard { get; set; } = null!;
+    public GraphicalCards? GraphicalCard { get; set; }
 
     [ForeignKey("ComputerCases")]
     public int CaseId { get; set; }
-    public ComputerCases Case { get; set; } = null!;
+    public ComputerCases? Case { get; set; }
 
     public string? Name { get; set; }
 
@@ -33,5 +33,10 @@ public class PcConfigurations
     public int TotalWattage { get; set; }
 
     public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
+
+    public bool Status { get; set; }
+
+    public int UserId { get; set; }
+    public User? user { get; set; }
 
 }

@@ -1,5 +1,103 @@
 ﻿@page "/configurations"
+@using PC_Designer.ViewModels
+@using PC_Designer.Shared
+@inject HttpClient Http
+@inject IPcConfigurationService configurationService
+@inject IJSRuntime _jsRuntime
 
-<PageTitle>Data</PageTitle>
+<div>
+    <h2>Create Configuration</h2>
+    <form @onsubmit="CreateConfigurationAsync">
+        <div class="form-group">
+            <label for="name">Name: </label>
+            <input type="text" class="form-control" id="name" @bind="newConfiguration.Name">
+        </div>
+        <div class="form-group">
+            <label for="about">About: </label>
+            <textarea class="form-control" id="about" @bind="newConfiguration.About"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="motherboard">Motherboard: </label>
+            <select class="form-control" id="motherboard" @bind="newConfiguration.MotherBoardId">
+                @foreach (var motherboard in motherboards)
+                {
+                    <option value="@motherboard.MotherBoardId">@motherboard.MotherBoardName</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="cpu">CPU: </label>
+            <select class="form-control" id="cpu" @bind="newConfiguration.CpuId">
+                @foreach (var cpu in cpus)
+                {
+                    <option value="@cpu.CpuId">@cpu.CpuName</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="graphicsCard">Graphics Card: </label>
+            <select class="form-control" id="graphicsCard" @bind="newConfiguration.GraphicalCardId">
+                @foreach (var graphicsCard in graphicalCards)
+                {
+                    <option value="@graphicsCard.GraphicalCardId">@graphicsCard.GraphicalCardName</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="computerCase">Computer Case: </label>
+            <select class="form-control" id="computerCase" @bind="newConfiguration.CaseId">
+                @foreach (var computerCase in computerCases)
+                {
+                    <option value="@computerCase.CaseId">@computerCase.CaseName</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Create New Configuration</button>
+    </form>
+</div>
 
-<h2>Create Configuration</h2>
+@code {  
+
+    @* [Inject] private IPcConfigurationService configurationService { get; set; }
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Console.WriteLine($"Injected service name: {ConfigurationService?.GetType().Name}");
+    }  *@
+
+    private List<PcConfigurationViewModel> configurations = new List<PcConfigurationViewModel>();
+
+    private List<MotherBoards> motherboards = new List<MotherBoards>();
+    private List<CPUs> cpus = new List<CPUs>();
+    private List<GraphicalCards> graphicalCards = new List<GraphicalCards>();
+    private List<ComputerCases> computerCases = new List<ComputerCases>();
+    
+    private PcConfigurationViewModel newConfiguration = new PcConfigurationViewModel();
+
+    protected override async Task OnInitializedAsync()
+    {
+        configurations = (await configurationService.GetConfigurationsAsync())?.Select
+            (configuration => (PcConfigurationViewModel)configuration).ToList() ?? new List<PcConfigurationViewModel>();
+
+        motherboards = await configurationService.GetMotherBoardsAsync();
+        cpus = await configurationService.GetCpusAsync();
+        graphicalCards = await configurationService.GetGraphicalCardsAsync();
+        computerCases = await configurationService.GetComputerCasesAsync();
+    }
+
+    private async Task CreateConfigurationAsync()
+    {
+        var newConfigurationId = await configurationService.CreateConfigurationsAsync(newConfiguration);
+        if (newConfigurationId > 0)
+        {
+            configurations = await configurationService.GetConfigurationsAsync();
+        }
+    }
+
+    private async Task DeleteConfiguration(int id)
+    {
+        await configurationService.DeleteConfigurationsAsync(id);
+        configurations = (await configurationService.GetConfigurationsAsync())?.Select
+        (configuration => (PcConfigurationViewModel)configuration).ToList() ?? new List<PcConfigurationViewModel>();
+    }
+}

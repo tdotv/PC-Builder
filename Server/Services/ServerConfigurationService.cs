@@ -34,16 +34,40 @@ public class ServerConfigurationService : IPcConfigurationService
         return configurations.Select(configuration => (PcConfigurationViewModel)configuration).ToList(); 
     }
 
-    // public async Task<int> CreateConfigurationsAsync(PcConfigurationViewModel configurationViewModel)
-    // {
-    //     var command = @"
-    //         INSERT INTO dbo.PcConfigurations (MotherBoardId, CpuId, GraphicalCardId, CaseId, Name, TotalWattage, CreatedOn)
-    //         VALUES (@MotherBoardId, @CpuId, @GraphicalCardId, @CaseId, @Name, @TotalWattage, @CreatedOn);
-    //         SELECT SCOPE_IDENTITY();";
+    public async Task<List<MotherBoards>?> GetMotherBoardsAsync()
+    {
+        var query = "SELECT * FROM dbo.MotherBoards";
+        return await _dbService.GetAll<MotherBoards>(query, new {});
+    }
 
-    //     var id = await _dbService.Insert<int>(command, configurationViewModel);
-    //     return id;
-    // }
+    public async Task<List<CPUs>?> GetCpusAsync()
+    {
+        var query = "SELECT * FROM dbo.CPUs";
+        return await _dbService.GetAll<CPUs>(query, new {});
+    }
+
+    public async Task<List<GraphicalCards>?> GetGraphicalCardsAsync()
+    {
+        var query = "SELECT * FROM dbo.GraphicalCards";
+        return await _dbService.GetAll<GraphicalCards>(query, new {});
+    }
+
+    public async Task<List<ComputerCases>?> GetComputerCasesAsync()
+    {
+        var query = "SELECT * FROM dbo.ComputerCases";
+        return await _dbService.GetAll<ComputerCases>(query, new {});
+    }
+
+    public async Task<int> CreateConfigurationsAsync(PcConfigurationViewModel configurationViewModel)
+    {
+        var command = @"
+            INSERT INTO dbo.PcConfigurations (MotherBoardId, CpuId, GraphicalCardId, CaseId, Name, TotalWattage, CreatedOn)
+            VALUES (@MotherBoardId, @CpuId, @GraphicalCardId, @CaseId, @Name, @TotalWattage, @CreatedOn);
+            SELECT SCOPE_IDENTITY();";
+
+        var id = await _dbService.Insert<int>(command, configurationViewModel);
+        return id;
+    }
 
     // public async Task<bool> UpdateConfigurationAsync(PcConfigurations configuration)
     // {

@@ -1,4 +1,5 @@
 using Dapper;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -7,17 +8,18 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
-// #region CORS settings for API
-// builder.Services.AddCors(options => 
-// {
-//     options.AddPolicy(name: "_myAllowSpecificOrigins", policy => { policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod(); });
-// });
-// #endregion
+#region CORS settings for API
+builder.Services.AddCors(options => 
+{
+    options.AddPolicy(name: "_myAllowSpecificOrigins", policy => { policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod(); });
+});
+#endregion
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddSignalR();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddAuthentication(options =>
     {
