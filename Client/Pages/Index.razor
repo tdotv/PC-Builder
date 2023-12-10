@@ -25,35 +25,38 @@
 
 <div>
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        @foreach (var configuration in configurations)
+        @if (configurations != null)
         {
-            <div class="col">
-                <div class="card h-100 config-card">
-                    <div class="card-body">
-                        <h5 class="card-title">@configuration.Name Configuration</h5>
-                        <p class="card-text"><strong>About:</strong> @configuration.About</p>
-                        <ul class="list-unstyled">
-                            <li><strong>Motherboard:</strong> @configuration.MotherBoardName </li>
-                            <li><strong>CPU:</strong> @configuration.CpuName</li>
-                            <li><strong>Graphics Card:</strong> @configuration.GraphicalCardName</li>
-                            <li><strong>Case:</strong> @configuration.CaseName</li>
-                        </ul>
-                        <div class="d-flex justify-content-between">
-                            <p class="card-text"><small><strong>Cost:</strong> @configuration.Cost</small></p>
-                            <p class="card-text"><small><strong>Power:</strong> @configuration.TotalWattage Wattage</small></p>
+            @foreach (var configuration in configurations)
+            {
+                <div class="col">
+                    <div class="card h-100 config-card">
+                        <div class="card-body">
+                            <h5 class="card-title">@configuration.Name Configuration</h5>
+                            <p class="card-text"><strong>About:</strong> @configuration.About</p>
+                            <ul class="list-unstyled">
+                                <li><strong>Motherboard:</strong> @configuration.MotherBoardName </li>
+                                <li><strong>CPU:</strong> @configuration.CpuName</li>
+                                <li><strong>Graphics Card:</strong> @configuration.GraphicalCardName</li>
+                                <li><strong>Case:</strong> @configuration.CaseName</li>
+                            </ul>
+                            <div class="d-flex justify-content-between">
+                                <p class="card-text"><small><strong>Cost:</strong> @configuration.Cost</small></p>
+                                <p class="card-text"><small><strong>Power:</strong> @configuration.TotalWattage Wattage</small></p>
+                            </div>
+                            <AuthorizeView Roles="admin">
+                                <button @onclick="() => DeleteConfigurationAsync(configuration.PcConfigurationId)" class="btn btn-danger">Delete</button>
+                            </AuthorizeView>
                         </div>
-                        <AuthorizeView Roles="admin">
-                            <button @onclick="() => DeleteConfigurationAsync(configuration.PcConfigurationId)" class="btn btn-danger">Delete</button>
-                        </AuthorizeView>
                     </div>
                 </div>
-            </div>
+            } 
         }
     </div>
 </div>
 
 @code {
-    private List<PcConfigurationViewModel> configurations = new List<PcConfigurationViewModel>();
+    private List<PcConfigurationViewModel>? configurations = new List<PcConfigurationViewModel>();
 
     protected override async Task OnInitializedAsync()
     {

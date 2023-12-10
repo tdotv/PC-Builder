@@ -35,19 +35,13 @@
                                 <div class="d-flex mb-5 align-items-center">
                                     <label class="control control--checkbox mb-0">
                                         <span class="caption">Remember Me</span>
-                                        <input @bind-value="@_loginViewModel.RememberMe" style="margin-right: 15px;" type="checkbox" checked="checked">
+                                        <input @bind-value="@_loginViewModel.RememberMe" type="checkbox" checked="checked">
                                         <div class="control__indicator"></div>
                                     </label>
-                                    <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>
                                 </div>
                                 <button class="btn btn-primary" @onclick="AuthenticateJWT">Login</button>
-                                <button class="btn btn-primary" href="/createaccount">Create Account</button>
+                                <button class="btn btn-primary" @onclick='() => _navigationManager.NavigateTo("/createaccount")'>Create Account</button>
                                 <span class="d-block text-left my-4 text-muted">&mdash; or login with &mdash;</span>
-                                @* <div class="social-login">
-                                    <a href="#" class="facebook">
-                                        <span class="icon-vk mr-3"></span>
-                                    </a>
-                                </div> *@
                             </form>
                         </div>
                     </div>
@@ -59,7 +53,7 @@
 
 @code {
     [CascadingParameter]
-    public Task<AuthenticationState> authenticationState { get; set; }
+    public Task<AuthenticationState> authenticationState { get; set; } = null!;
     
     protected override async Task OnInitializedAsync()
     {
@@ -70,12 +64,13 @@
     public async Task LoginUser()
     {
         await _loginViewModel.LoginUser();
+        _navigationManager.NavigateTo("profile");
     }
 
-     public async Task AuthenticateJWT()
+    public async Task AuthenticateJWT()
     {
         AuthenticationResponse authenticationResponse = await _loginViewModel.AuthenticateJWT();
-        if(authenticationResponse.Token != string.Empty)
+        if(authenticationResponse.Token != null)
         {
             await _localStorageService.SetItemAsync("jwt_token",authenticationResponse.Token);
         }

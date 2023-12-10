@@ -5,7 +5,6 @@ namespace PC_Designer.Server.Controllers;
 
 [ApiController]
 [Route("api/cpu")]
-// [Authorize]
 public class CpuController : ControllerBase
 {
     private readonly IPcConfigurationService _configurationService;

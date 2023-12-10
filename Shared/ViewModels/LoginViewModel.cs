@@ -64,9 +64,6 @@ namespace PC_Designer.ViewModels
                     }
                 };
 
-                // var requestMessage = new HttpRequestMessage(HttpMethod.Post, "user/getuserbyjwt");
-                // requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
-
                 //making the http request
                 var response = await _httpClient.SendAsync(requestMessage);
 

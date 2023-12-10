@@ -5,7 +5,6 @@ namespace PC_Designer.Server.Controllers;
 
 [ApiController]
 [Route("api/graphicalcard")]
-// [Authorize]
 public class GraphicalCardController : ControllerBase
 {
     private readonly IPcConfigurationService _configurationService;

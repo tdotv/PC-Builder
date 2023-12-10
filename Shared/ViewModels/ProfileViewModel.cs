@@ -38,9 +38,6 @@ namespace PC_Designer.ViewModels
         {
             User user = this;
             await _httpClient.PutAsJsonAsync("profile/updateprofile/" + this.UserId, user);
-
-            // var jwtToken = await _accessTokenService.GetAccessTokenAsync("jwt_token");
-            // await _httpClient.PutAsync<User>($"profile/updateprofile/{UserId}", this, jwtToken);
         }
 
         public async Task UpdateProfileWithImage(byte[] imageBytes)

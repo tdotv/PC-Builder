@@ -9,7 +9,6 @@ namespace PC_Designer.Server.Controllers;
 
 [ApiController]
 [Route("api/configuration")]
-// [Authorize]
 public class PcConfigurationController : ControllerBase
 {
     private readonly IPcConfigurationService _configurationService;
@@ -29,7 +28,7 @@ public class PcConfigurationController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<int>> CreateConfigurations(PcConfigurations configuration)   //  [FromBody]
+    public async Task<ActionResult<int>> CreateConfigurations(PcConfigurations configuration)
     {
         var viewModel = _mapper.Map<PcConfigurationViewModel>(configuration);
         var id = await _configurationService.CreateConfigurationsAsync(viewModel);

@@ -29,16 +29,16 @@ else
     <body>
         <div class="container">
             <div class="box">
-                @if(_profileViewModel.ProfilePictureData != null)
+                <ul>
+                    @if(_profileViewModel.ProfilePictureData != null)
                     {
-                        <img src="data:image/png;base64,@Convert.ToBase64String(_profileViewModel.ProfilePictureData)" alt="Profile picture" 
-                            style="max-width: 150px; max-height: 150px; border-radius: 35%; margin-left: 50px;" class="mx-3"/>
+                        <img src="data:image/png;base64,@Convert.ToBase64String(_profileViewModel.ProfilePictureData)" alt="Profile picture" class="mx-3"/>
                     }
                     else
                     {
-                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-                            style="max-width: 150px; max-height: 150px; border-radius: 35%; margin-left: 50px;" class="mx-3" />
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="mx-3" />
                     }
+                </ul>
                 <ul>
                     <li>@($"{_profileViewModel.FirstName} {_profileViewModel.LastName}")</li>
                     <li>@_profileViewModel.EmailAddress</li>
@@ -114,7 +114,7 @@ else
 @code {
 
     [CascadingParameter]
-    public Task<AuthenticationState> AuthenticationState { get; set; }
+    public Task<AuthenticationState> AuthenticationState { get; set; } = null!;
 
     private bool IsLoading { get; set; } = true;
     private bool IsUserAuthorized { get; set; }

@@ -6,7 +6,6 @@ namespace PC_Designer.Server.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    // [Authorize]
     public class ProfileController : ControllerBase
     {
 

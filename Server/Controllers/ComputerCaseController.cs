@@ -5,7 +5,6 @@ namespace PC_Designer.Server.Controllers;
 
 [ApiController]
 [Route("api/computercase")]
-// [Authorize]
 public class ComputerCaseController : ControllerBase
 {
     private readonly IPcConfigurationService _configurationService;

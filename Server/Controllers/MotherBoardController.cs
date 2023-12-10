@@ -5,7 +5,6 @@ namespace PC_Designer.Server.Controllers;
 
 [ApiController]
 [Route("api/motherboard")]
-// [Authorize]
 public class MotherBoardController : ControllerBase
 {
     private readonly IPcConfigurationService _configurationService;

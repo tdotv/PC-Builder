@@ -25,14 +25,14 @@ namespace PC_Designer.Client
 
             if (currentUser != null && currentUser.EmailAddress != null)
             {
-                //create a claims
+                //  Create a claims
                 var claimEmailAddress = new Claim(ClaimTypes.Name, currentUser.EmailAddress);
                 var claimNameIdentifier = new Claim(ClaimTypes.NameIdentifier, Convert.ToString(currentUser.UserId));
                 var claimRole = new Claim(ClaimTypes.Role, currentUser.Role == null ? "" : currentUser.Role);
 
-                //create claimsIdentity
+                //  Create claimsIdentity
                 var claimsIdentity = new ClaimsIdentity(new[] { claimEmailAddress, claimNameIdentifier, claimRole }, "serverAuth");
-                //create claimsPrincipal
+                //  Create claimsPrincipal
                 var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
                 return new AuthenticationState(claimsPrincipal);
             }
@@ -42,7 +42,7 @@ namespace PC_Designer.Client
 
         public async Task<User> GetUserByJWTAsync()
         {
-            //pulling the token from localStorage
+            //  Culling the token from localStorage
             var jwtToken = await _localStorageService.GetItemAsStringAsync("jwt_token");
             if (jwtToken == null) return null;
 
