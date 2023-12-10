@@ -1,5 +1,7 @@
 using PC_Designer.ViewModels;
 
+#nullable disable
+
 namespace PC_Designer.Client.Logging
 {
     public class DatabaseLogger : ILogger
@@ -10,7 +12,7 @@ namespace PC_Designer.Client.Logging
         {
             _httpClient = httpClient;
         }
-        public IDisposable? BeginScope<TState>(TState state)
+        public IDisposable BeginScope<TState>(TState state)
         {
             return null;
         }

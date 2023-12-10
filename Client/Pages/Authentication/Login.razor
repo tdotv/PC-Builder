@@ -53,7 +53,7 @@
 
 @code {
     [CascadingParameter]
-    public Task<AuthenticationState> authenticationState { get; set; } = null!;
+    public Task<AuthenticationState> authenticationState { get; set; }
     
     protected override async Task OnInitializedAsync()
     {

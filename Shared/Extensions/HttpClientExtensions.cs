@@ -20,10 +20,13 @@ namespace PC_Designer.Shared.Extensions
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             var response = await httpClient.SendAsync(request);
+
             var responseBody = await response.Content.ReadAsStringAsync();
 
             var jsonSerializerOptions = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
-            return JsonSerializer.Deserialize<T>(responseBody, jsonSerializerOptions);
+            
+            var deserializedObject = JsonSerializer.Deserialize<T>(responseBody, jsonSerializerOptions);
+            return deserializedObject ?? throw new InvalidOperationException("Failed to deserialize");
         }
 
         public static async Task<T> PostAsync<T>(this HttpClient httpClient,
@@ -69,7 +72,7 @@ namespace PC_Designer.Shared.Extensions
             string token)
         {
             var request = new HttpRequestMessage(HttpMethod.Delete, url);
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token); ;
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             var response = await httpClient.SendAsync(request);
             var responseBody = await response.Content.ReadAsStringAsync();

@@ -3,6 +3,8 @@ using PC_Designer.Shared;
 using System.Net.Http.Headers;
 using System.Text.Json;
 
+#nullable disable
+
 namespace PC_Designer.ViewModels
 {
     public class LoginViewModel : ILoginViewModel

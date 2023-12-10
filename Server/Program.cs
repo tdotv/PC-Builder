@@ -35,7 +35,9 @@ builder.Services.AddAuthentication(options =>
         jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
+#pragma warning disable CA8600, Cs8604 // Rethrow to preserve stack details
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["JWTSettings:SecretKey"])),
+#pragma warning restore CA8600, Cs8604 // Rethrow to preserve stack details
             ValidateIssuer = false,
             ValidateAudience = false,
             ClockSkew = TimeSpan.Zero

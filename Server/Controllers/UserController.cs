@@ -48,12 +48,19 @@ namespace PC_Designer.Server.Controllers
                     {
                         EmailAddress = User.FindFirstValue(ClaimTypes.Email)
                     };
-                    currentUser.Password = Utility.Encrypt(currentUser.EmailAddress);
+                    if(currentUser.EmailAddress != null)
+                    {
+                        currentUser.Password = Utility.Encrypt(currentUser.EmailAddress);
+                    }
                     currentUser.Source = "EXTL";
 
                     await dbService.Insert<User>("INSERT INTO dbo.Users (EmailAddress, Password, Source) VALUES (@EmailAddress, @Password, @Source)",
                         new { currentUser.EmailAddress, currentUser.Password, currentUser.Source });
                 }
+            }
+            else
+            {
+                System.Console.WriteLine("Can't get user");
             }
 
             return await Task.FromResult(currentUser);
@@ -109,33 +116,43 @@ namespace PC_Designer.Server.Controllers
         }
 
         //  JWT Authorization
-        private string GenerateJwtToken(User user)
+        private string GenerateJwtToken(User? user)
         {
             //getting the secret key
+#pragma warning disable CS8600, CA8604 // Rethrow to preserve stack details
             string secretKey = configuration["JWTSettings:SecretKey"];
-            var key = Encoding.ASCII.GetBytes(secretKey);
-        
-            //create claims
-            var claimEmail = new Claim(ClaimTypes.Email, user.EmailAddress);
-            var claimNameIdentifier = new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString());
-            var claimRole = new Claim(ClaimTypes.Role, user.Role == null ? "" : user.Role);
-        
-            //create claimsIdentity
-            var claimsIdentity = new ClaimsIdentity(new[] { claimEmail, claimNameIdentifier, claimRole }, "serverAuth");
-        
-            // generate token that is valid for 7 days
-            var tokenDescriptor = new SecurityTokenDescriptor
+#pragma warning disable CS8600, CA8604 // Rethrow to preserve stack details
+            
+            if (secretKey != null)
             {
-                Subject = claimsIdentity,
-                Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            //creating a token handler
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-        
-            //returning the token back
-            return tokenHandler.WriteToken(token);
+                var key = Encoding.ASCII.GetBytes(secretKey);
+
+                //create claims
+                var claimEmail = new Claim(ClaimTypes.Email, user.EmailAddress);
+                var claimNameIdentifier = new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString());
+                var claimRole = new Claim(ClaimTypes.Role, user.Role == null ? "" : user.Role);
+            
+                //create claimsIdentity
+                var claimsIdentity = new ClaimsIdentity(new[] { claimEmail, claimNameIdentifier, claimRole }, "serverAuth");
+            
+                // generate token that is valid for 7 days
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = claimsIdentity,
+                    Expires = DateTime.UtcNow.AddDays(7),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                };
+                //creating a token handler
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+            
+                //returning the token back
+                return tokenHandler.WriteToken(token);
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
 
         [HttpPost("authenticatejwt")]
@@ -162,7 +179,10 @@ namespace PC_Designer.Server.Controllers
             try
             {
                 //getting the secret key
+#pragma warning disable CS8600, CA8604 // Rethrow to preserve stack details
                 string secretKey = configuration["JWTSettings:SecretKey"];
+#pragma warning disable CS8600, CA8604 // Rethrow to preserve stack details
+
                 var key = Encoding.ASCII.GetBytes(secretKey);
         
                 //preparing the validation parameters
@@ -198,7 +218,7 @@ namespace PC_Designer.Server.Controllers
         }
 
         [HttpGet("getallusers")]
-        public async Task<List<User>> GetAllUsers()
+        public async Task<List<User>?> GetAllUsers()
         {
             var users = await dbService.GetAll<User>("SELECT UserId, EmailAddress, Role FROM dbo.Users", null);
             return users;

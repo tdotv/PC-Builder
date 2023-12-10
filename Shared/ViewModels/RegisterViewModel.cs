@@ -1,6 +1,8 @@
 using System.Net.Http.Json;
 using PC_Designer.Shared;
 
+#nullable disable
+
 namespace PC_Designer.ViewModels
 {
     public class RegisterViewModel : IRegisterViewModel

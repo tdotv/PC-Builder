@@ -1,6 +1,8 @@
 using System;
 using PC_Designer.Shared;
 
+#nullable disable
+
 namespace PC_Designer.ViewModels
 {
     public class PcConfigurationViewModel

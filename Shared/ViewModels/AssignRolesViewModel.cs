@@ -2,6 +2,8 @@ using PC_Designer.Shared;
 using PC_Designer.Shared.Services;
 using PC_Designer.Shared.Extensions;
 
+#nullable disable
+
 namespace PC_Designer.ViewModels
 {
     public class AssignRolesViewModel : IAssignRolesViewModel
